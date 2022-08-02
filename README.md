@@ -2,6 +2,8 @@
 
 Displays a list of ROMs, grouped by platform.
 
+![preview](preview.png)
+
 Comes in two versions:
 
 ### Web version
