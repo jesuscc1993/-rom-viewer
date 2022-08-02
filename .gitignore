@@ -13,5 +13,6 @@ neutralino.js
 .storage
 *.log
 
-# Settings files
-romsettings.js
+# Setting files
+romSettings.js
+romSettings.json
