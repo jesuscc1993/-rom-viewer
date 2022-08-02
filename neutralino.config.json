@@ -1,0 +1,57 @@
+{
+  "applicationId": "js.neutralino.sample",
+  "version": "1.0.0",
+  "defaultMode": "window",
+  "port": 0,
+  "documentRoot": "/src/",
+  "url": "/",
+  "enableServer": true,
+  "enableNativeAPI": true,
+  "tokenSecurity": "one-time",
+  "logging": {
+    "enabled": true,
+    "writeToLogFile": true
+  },
+  "nativeAllowList": ["app.*", "os.*", "filesystem.*", "debug.log"],
+  "globalVariables": {},
+  "modes": {
+    "window": {
+      "title": "ROM Viewer",
+      "width": 1280,
+      "height": 960,
+      "minWidth": 672,
+      "minHeight": 540,
+      "fullScreen": false,
+      "alwaysOnTop": false,
+      "icon": "/src/assets/icons/appIcon.png",
+      "enableInspector": false,
+      "borderless": false,
+      "maximize": true,
+      "hidden": false,
+      "resizable": true,
+      "exitProcessOnClose": true
+    },
+    "browser": {
+      "globalVariables": {},
+      "nativeBlockList": ["filesystem.*"]
+    },
+    "cloud": {
+      "url": "/src/#cloud",
+      "nativeAllowList": ["app.*"]
+    },
+    "chrome": {
+      "width": 1280,
+      "height": 960,
+      "args": "--user-agent=\"Neutralinojs chrome mode\"",
+      "nativeBlockList": ["filesystem.*", "os.*"]
+    }
+  },
+  "cli": {
+    "binaryName": "ROM Viewer",
+    "resourcesPath": "/src/",
+    "extensionsPath": "/extensions/",
+    "clientLibrary": "/src/vendor/neutralino.js",
+    "binaryVersion": "4.7.0",
+    "clientVersion": "3.6.0"
+  }
+}

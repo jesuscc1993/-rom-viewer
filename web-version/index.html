@@ -1,0 +1,28 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="../src/assets/icons/appIcon.png" />
+    <link rel="stylesheet" href="../src/index.css" />
+    <title>ROM Viewer</title>
+  </head>
+  <body>
+    <div class="main">
+      <div id="platformLinks" class="platform-links sidebar">
+        <h3>Jump to:</h3>
+      </div>
+
+      <siv class="main-contents">
+        <div id="romsContainer" class="roms-container"></div>
+      </siv>
+
+      <div id="platformFilter" class="platform-filter sidebar">
+        <h3>Limit to:</h3>
+      </div>
+    </div>
+
+    <script src="../src/vendor/jquery.slim.min.js"></script>
+    <script src="romSettings.js"></script>
+    <script src="../src/common.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>

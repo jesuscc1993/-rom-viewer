@@ -1,0 +1,12 @@
+{
+  "name": "rom-viewer",
+  "version": "1.0.0",
+  "description": "ROM Viewer",
+  "main": "index.js",
+  "scripts": {
+    "update": "neu update",
+    "build": "neu build"
+  },
+  "author": "jesuscc1993",
+  "license": "MIT"
+}
