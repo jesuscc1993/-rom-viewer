@@ -2,7 +2,7 @@
 
 ## Configuration
 
-Copy `/templates/romSettings.template.js` as `/web-version/romSettings.js` and fill in your data.
+Copy `/templates/rom-viewer.settings.template.js` as `/web-version/rom-viewer.settings.js` and fill in your data.
 
 ## Running
 

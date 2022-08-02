@@ -47,7 +47,7 @@
     }
   },
   "cli": {
-    "binaryName": "ROM Viewer",
+    "binaryName": "rom-viewer",
     "resourcesPath": "/src/",
     "extensionsPath": "/extensions/",
     "clientLibrary": "/src/vendor/neutralino.js",

@@ -14,5 +14,5 @@ neutralino.js
 *.log
 
 # Setting files
-romSettings.js
-romSettings.json
+rom-viewer.settings.js
+rom-viewer.settings.json

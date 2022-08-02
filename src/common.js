@@ -54,9 +54,10 @@ const generatePlatforms = async () => {
     if (platformParam && platformParam !== platformKey) return;
 
     const platform = romSettings.platforms[platformKey];
-    const roms = platform.roms;
+    platform.coverPath = platform.coverPath || platformKey;
+    platform.romPath = platform.romPath || platformKey;
 
-    if (!roms.length) return;
+    if (!platform.roms.length) return;
 
     const platformRoms = jQuery(
       `<div class="platform ${platformKey}">
@@ -64,7 +65,7 @@ const generatePlatforms = async () => {
       </div>`
     );
 
-    platformRoms.append(await generateRoms(roms, platform));
+    platformRoms.append(await generateRoms(platform));
     jQuery('#romsContainer').append(platformRoms);
   });
 };

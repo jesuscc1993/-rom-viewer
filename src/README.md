@@ -10,8 +10,8 @@ Run `npm build` to compile the executable desktop app (can be found under `/dist
 
 ## Configuration
 
-Copy `/templates/romSettings.template.json` as `/dist/ROM Viewer/romSettings.json` and fill in your data.
+Copy `/templates/rom-viewer.settings.template.json` as `/dist/rom-viewer/rom-viewer.settings.json` and fill in your data.
 
 ## Running
 
-Run the corresponding executable version for your OS (found under `/dist/ROM Viewer`).
+Run the corresponding executable version for your OS (found under `/dist/rom-viewer`).

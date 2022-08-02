@@ -1,7 +1,7 @@
-const generateRoms = async (roms, platform) => {
+const generateRoms = async (platform) => {
   const romsGridEl = jQuery(`<div class="roms-grid"></div>`);
 
-  roms.forEach((rom) => {
+  platform.roms.forEach((rom) => {
     const romFile = sanitizeRomName(rom);
     const romName = romFile.replace(/\.[^.]*$/, '');
     const coverPath = `file:///${romSettings.coverPath}/${

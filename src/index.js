@@ -1,7 +1,7 @@
-const generateRoms = async (roms, platform) => {
+const generateRoms = async (platform) => {
   const romsGridEl = jQuery(`<div class="roms-grid"></div>`);
 
-  roms.forEach(async (rom) => {
+  platform.roms.forEach(async (rom) => {
     const romFile = sanitizeRomName(rom);
     const romName = romFile.replace(/\.[^.]*$/, '');
     const romPath = `${romSettings.romPath}/${platform.romPath}/${rom}`;
@@ -46,7 +46,9 @@ const initialize = async () => {
 
   try {
     romSettings = JSON.parse(
-      await Neutralino.filesystem.readFile(`${NL_PATH}/romSettings.json`)
+      await Neutralino.filesystem.readFile(
+        `${NL_PATH}/rom-viewer.settings.json`
+      )
     );
   } catch (err) {
     alert(err.message);
