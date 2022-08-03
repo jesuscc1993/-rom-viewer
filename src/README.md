@@ -2,22 +2,29 @@
 
 ## Setup
 
-Run `npm update` to install/update NeutralinoJS.
+Run `npm run update` to install/update NeutralinoJS.
 
-## Build
+## Development
 
-Run `npm build` to compile the executable desktop app (can be found under `/dist`).
-
-## Configuration
-
-### Development
+### Configure
 
 Copy `/templates/rom-viewer.settings.template.json` as `rom-viewer.settings.json` and fill in your data.
 
-### Release
+### Run
+
+Run `npm run`.
+
+## Release
+
+### Build
+
+1. Run `npm run configure` to configure the mode (dev / release) and version.
+2. Run `npm run build` to compile the executable desktop app (can be found under `/dist`).
+
+### Configure
 
 Copy `/templates/rom-viewer.settings.template.json` as `/dist/rom-viewer/rom-viewer.settings.json` and fill in your data.
 
-## Running
+## Run
 
 Run the corresponding executable version for your OS (found under `/dist/rom-viewer`).
