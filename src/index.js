@@ -24,7 +24,7 @@ const generateRoms = async (platform) => {
     );
 
     const romEl = jQuery(`
-        <a class="rom" click="onClick" title="${romName}"></a>
+        <div class="rom" click="onClick" title="${romName}"></div>
       `);
     romEl.append(coverEl);
     romEl.click(async () => {
@@ -46,10 +46,18 @@ const initialize = async () => {
 
   try {
     romSettings = JSON.parse(
-      await Neutralino.filesystem.readFile(
-        `${NL_PATH}/rom-viewer.settings.json`
-      )
+      await Neutralino.filesystem.readFile(`${NL_CWD}/rom-viewer.settings.json`)
     );
+
+    if (romSettings.coverSize) {
+      jQuery(':root').css('--cover-size', romSettings.coverSize);
+    }
+    if (romSettings.maxColumns) {
+      jQuery(':root').css('--max-columns', romSettings.maxColumns);
+    }
+    if (romSettings.coverFontSize) {
+      jQuery(':root').css('--cover-font-size', romSettings.coverFontSize);
+    }
   } catch (err) {
     alert(err.message);
   }

@@ -9,9 +9,9 @@ const generateRoms = async (platform) => {
     }/${replaceExtension(romFile, 'jpg')}`;
 
     const romEl = jQuery(`
-        <a class="rom" click="onClick" title="${romName}">
+        <div class="rom" click="onClick" title="${romName}">
           <img class="rom-cover" alt="${romName}" src="${coverPath}">
-        </a>
+        </div>
       `);
 
     romsGridEl.append(romEl);

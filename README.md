@@ -24,9 +24,12 @@ Loads slower but does have the capability to run roms on click.
 
 ```
 {
-  "romPath": "", // base rom path, should be an absolute path
+  "coverFontSize": "", // font size for cover text (optional; defaults to 1.25em)
   "coverPath": "", // base cover path, should be an absolute path
+  "coverSize": "", // cover size (optional; defaults to 192px)
   "emulatorPath": "", // base emulator path, should be an absolute path
+  "maxColumns": "", // maximum number of rom columns to display (optional; defaults to 7)
+  "romPath": "", // base rom path, should be an absolute path
   "platforms": {
     "PLATFORM_NAME": {
       "coverPath": "", // path to the covers for this platform; relative to the root coverPath (optional; defaults to the platform's name)
