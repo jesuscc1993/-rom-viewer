@@ -40,7 +40,7 @@ const romSettings = {
       roms: [],
     },
     '3DS': {
-      emulatorPath: 'DesMuMe/DeSmuME-VS2019-x64-Release.exe',
+      emulatorPath: "Citra/citra-qt.exe",
       roms: [],
     },
     Wii: {
