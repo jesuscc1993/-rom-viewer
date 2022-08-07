@@ -20,6 +20,17 @@ Loads slower but does have the capability to run roms on click.
 
 [NeutralinoJS version readme](/src/README.md)
 
+## Cover lookup
+
+The app will look for covers matching the ROM's name. Text between parenthesis or brackets will be ignored.
+
+_e.g.:_
+Given ROM filename  
+`"Foo [bar] (baz) {qux}.iso"`,  
+a cover with filename  
+`"Foo.jpg"`  
+will be looked up.
+
 ## Config description
 
 ```
@@ -38,5 +49,14 @@ Loads slower but does have the capability to run roms on click.
       "roms": [] // list of paths to the roms, relative to the platform's romPath
     },
   }
+}
+```
+
+Alternatively to a string, a rom can be an object in the following format:
+
+```
+{
+  "filename": "", // filename to be displayed; will be used for the cover lookup
+  "path": "" // paths to the rom, relative to the platform's romPath
 }
 ```

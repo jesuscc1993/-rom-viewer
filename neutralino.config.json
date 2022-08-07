@@ -1,6 +1,6 @@
 {
   "applicationId": "js.neutralino.sample",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "defaultMode": "window",
   "port": 0,
   "documentRoot": "/src/",
@@ -12,7 +12,12 @@
     "enabled": false,
     "writeToLogFile": false
   },
-  "nativeAllowList": ["app.*", "os.*", "filesystem.*", "debug.log"],
+  "nativeAllowList": [
+    "app.*",
+    "os.*",
+    "filesystem.*",
+    "debug.log"
+  ],
   "globalVariables": {},
   "modes": {
     "window": {
@@ -33,17 +38,24 @@
     },
     "browser": {
       "globalVariables": {},
-      "nativeBlockList": ["filesystem.*"]
+      "nativeBlockList": [
+        "filesystem.*"
+      ]
     },
     "cloud": {
       "url": "/src/#cloud",
-      "nativeAllowList": ["app.*"]
+      "nativeAllowList": [
+        "app.*"
+      ]
     },
     "chrome": {
       "width": 1280,
       "height": 960,
       "args": "--user-agent=\"Neutralinojs chrome mode\"",
-      "nativeBlockList": ["filesystem.*", "os.*"]
+      "nativeBlockList": [
+        "filesystem.*",
+        "os.*"
+      ]
     }
   },
   "cli": {

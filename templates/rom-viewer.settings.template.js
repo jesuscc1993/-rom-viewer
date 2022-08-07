@@ -40,7 +40,7 @@ const romSettings = {
       roms: [],
     },
     '3DS': {
-      emulatorPath: "Citra/citra-qt.exe",
+      emulatorPath: 'Citra/citra-qt.exe',
       roms: [],
     },
     Wii: {
@@ -53,7 +53,6 @@ const romSettings = {
     },
     Switch: {
       emulatorPath: 'yuzu/yuzu-windows-msvc/yuzu.exe',
-      romPath: 'Switch/nsp',
       roms: [],
     },
   },

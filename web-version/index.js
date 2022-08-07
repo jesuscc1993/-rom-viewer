@@ -2,11 +2,11 @@ const generateRoms = async (platform) => {
   const romsGridEl = jQuery(`<div class="roms-grid"></div>`);
 
   platform.roms.forEach((rom) => {
-    const romFile = sanitizeRomName(rom);
-    const romName = romFile.replace(/\.[^.]*$/, '');
+    const romFilename = typeof rom === 'string' ? rom : rom.filename;
+    const romName = sanitizeRomName(romFilename).replace(/\.[^.]*$/, '');
     const coverPath = `file:///${romSettings.coverPath}/${
       platform.coverPath || platform.romPath
-    }/${replaceExtension(romFile, 'jpg')}`;
+    }/${romName}.jpg`;
 
     const romEl = jQuery(`
         <div class="rom" click="onClick" title="${romName}">
@@ -22,6 +22,8 @@ const generateRoms = async (platform) => {
 
 const initialize = async () => {
   generatePlatforms();
+
+  processSettings(romSettings);
 };
 
 initialize();

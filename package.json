@@ -1,6 +1,6 @@
 {
   "name": "rom-viewer",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "ROM Viewer",
   "main": "index.js",
   "scripts": {

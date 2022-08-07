@@ -85,6 +85,18 @@ const getSearchParams = () => {
   }, {});
 };
 
+const processSettings = (romSettings) => {
+  if (romSettings.coverSize) {
+    jQuery(':root').css('--cover-size', romSettings.coverSize);
+  }
+  if (romSettings.maxColumns) {
+    jQuery(':root').css('--max-columns', romSettings.maxColumns);
+  }
+  if (romSettings.coverFontSize) {
+    jQuery(':root').css('--cover-font-size', romSettings.coverFontSize);
+  }
+};
+
 const replaceExtension = (filename, newExtension) => {
   return filename.includes('.')
     ? filename.replace(/\.[^.]+$/, `.${newExtension}`)
@@ -92,5 +104,5 @@ const replaceExtension = (filename, newExtension) => {
 };
 
 const sanitizeRomName = (filename) => {
-  return filename.replace(/\s*(\(.*?\)|\[.*?\])\s*/g, '');
+  return filename.replace(/\s*(\(.*?\)|\[.*?\]|{.*?})\s*/g, '');
 };

@@ -53,7 +53,6 @@
     },
     "Switch": {
       "emulatorPath": "yuzu/yuzu-windows-msvc/yuzu.exe",
-      "romPath": "Switch/nsp",
       "roms": []
     }
   }
