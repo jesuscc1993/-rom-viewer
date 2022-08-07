@@ -21,9 +21,9 @@ const generateRoms = async (platform) => {
 };
 
 const initialize = async () => {
-  generatePlatforms();
-
   processSettings(romSettings);
+
+  generatePlatforms();
 };
 
 initialize();

@@ -2,22 +2,22 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" href="../src/assets/icons/dvd_32px.png" />
-    <link rel="stylesheet" href="../src/index.css" />
+    <link rel="stylesheet" href="../src/styles/main.css" />
+    <link rel="stylesheet" href="../src/styles/platform-links.css" />
+    <link rel="stylesheet" href="../src/styles/roms.css" />
     <title>ROM Viewer</title>
   </head>
   <body>
     <div class="main">
-      <div id="platformLinks" class="platform-links sidebar">
-        <h3>Jump to:</h3>
+      <div class="sidebar">
+        <ul id="platformLinks" class="platform-links no-style"></ul>
       </div>
 
       <div class="main-contents">
         <div id="romsContainer" class="roms-container"></div>
       </div>
 
-      <div id="platformFilter" class="platform-filter sidebar">
-        <h3>Limit to:</h3>
-      </div>
+      <div class="platform-info sidebar"></div>
     </div>
 
     <script src="../src/vendor/jquery.slim.min.js"></script>

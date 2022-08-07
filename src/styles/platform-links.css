@@ -1,0 +1,17 @@
+.platform-links hr {
+  margin: var(--spacing-xs) 0;
+}
+
+.platform-links li.anchor:hover {
+  background-color: var(--c-selected);
+}
+
+.platform-links a {
+  color: white;
+  display: inline-block;
+  padding: var(--spacing-xxs) var(--spacing-xs);
+  width: 100%;
+}
+.platform-links a:hover {
+  transform: translate(4px, 0);
+}

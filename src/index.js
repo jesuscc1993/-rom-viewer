@@ -64,7 +64,7 @@ const initialize = async () => {
 
     await Neutralino.os.execCommand(romSettingsPath);
   });
-  jQuery('.main-contents').append(editSettingsEl);
+  platformLinks.after(editSettingsEl);
   editSettingsEl.wrap('<p></p>');
 
   generatePlatforms();

@@ -7,66 +7,70 @@ const arrayBufferToBase64 = (buffer) => {
   return `data:image/jpg;base64,${window.btoa(binary)}`;
 };
 
-const generatePlatformLinks = (platforms) => {
-  const baseUrl = getBaseUrl();
+const generatePlatformLink = (platform) => {
+  const { label, roms, type } = platform;
 
-  const platformAnchors = jQuery('<ul class="links-container"></ul>');
+  if (type === 'separator') {
+    platformLinks.append(`<hr />`);
+    return;
+  }
 
-  const sectionAnchors = jQuery('<ul class="links-container"></ul>');
+  if (type === 'label') {
+    platformLinks.append(`
+        <li class="platform-label secondary">
+          <strong>${label}</strong>
+        </li>
+      `);
+    return;
+  }
 
-  platforms.forEach((platform, i) => {
-    const label = platform;
+  if (!roms?.length) return;
 
-    platformAnchors.append(
-      `<li><a href="${baseUrl}?platform=${platform}">${label}</a></li>`
-    );
-    sectionAnchors.append(
-      `<li><a href="${baseUrl}#${platform}">${label}</a></li>`
-    );
-  });
+  const anchorEl = jQuery(`
+      <a href="${baseUrl}#${label}">
+        ${label}
+      </a>
+    `);
+  if (appSettings.showRomCount) {
+    anchorEl.append(`
+        <span class="tertiary">
+          (${roms.length})
+        <span>
+      `);
+  }
 
-  jQuery('#platformFilter').append(platformAnchors);
-  jQuery('#platformLinks').append(sectionAnchors);
+  const liEl = jQuery(`<li class="anchor"></li>`);
+  liEl.append(anchorEl);
+  platformLinks.append(liEl);
 };
 
 const generatePlatforms = async () => {
-  const searchParams = getSearchParams();
-  const platformParam =
-    searchParams.platform && decodeURI(searchParams.platform);
+  romSettings.platforms.forEach(async (platform) => {
+    generatePlatformLink(platform);
 
-  const platformKeys = Object.keys(romSettings.platforms).filter(
-    (key) => romSettings.platforms[key].roms.length
-  );
+    platform.coverPath = platform.coverPath || platform.label;
+    platform.romPath = platform.romPath || platform.label;
 
-  if (platformParam) {
-    jQuery('#platformLinks').html('');
-    jQuery('#platformFilter').html(`
-      <div class="links-container">
-        <h3>Limit to: ${platformParam}</h3>
-        <a href="${getBaseUrl()}">🡠 All platforms</a>
-      </div>
+    if (!platform.roms?.length) return;
+
+    const platformLabelEl = jQuery(`
+      <h3 id="${platform.label}">
+        ${platform.label}
+      </h3>
     `);
-  } else {
-    generatePlatformLinks(platformKeys);
-  }
 
-  platformKeys.forEach(async (platformKey) => {
-    if (platformParam && platformParam !== platformKey) return;
+    if (appSettings.showRomCount) {
+      platformLabelEl.append(`
+        <span class="tertiary">
+          (${platform.roms.length})
+        <span>
+      `);
+    }
 
-    const platform = romSettings.platforms[platformKey];
-    platform.coverPath = platform.coverPath || platformKey;
-    platform.romPath = platform.romPath || platformKey;
-
-    if (!platform.roms.length) return;
-
-    const platformRoms = jQuery(
-      `<div class="platform ${platformKey}">
-        <h3 id="${platformKey}">${platformKey}</h3>
-      </div>`
-    );
-
-    platformRoms.append(await generateRoms(platform));
-    jQuery('#romsContainer').append(platformRoms);
+    const platformEl = jQuery(`<div class="platform ${platform.label}"></div>`);
+    platformEl.append(platformLabelEl);
+    platformEl.append(await generateRoms(platform));
+    romsContainer.append(platformEl);
   });
 };
 
@@ -74,27 +78,30 @@ const getBaseUrl = () => {
   return location.protocol + '//' + location.host + location.pathname;
 };
 
-const getSearchParams = () => {
-  if (!location.search.length) return [];
+const processSettings = (settings) => {
+  window.appSettings = settings.appSettings || {};
 
-  const params = location.search.slice(1).split('&');
-  return params.reduce((acc, param) => {
-    const [key, value] = param.split('=');
-    acc[key] = value;
-    return acc;
-  }, {});
-};
+  if (appSettings.coverFontSize) {
+    jQuery(':root').css('--cover-font-size', appSettings.coverFontSize);
+  }
+  if (appSettings.coverSize) {
+    jQuery(':root').css('--cover-size', appSettings.coverSize);
+  }
+  if (appSettings.maxColumns) {
+    jQuery(':root').css('--max-columns', appSettings.maxColumns);
+  }
 
-const processSettings = (romSettings) => {
-  if (romSettings.coverSize) {
-    jQuery(':root').css('--cover-size', romSettings.coverSize);
-  }
-  if (romSettings.maxColumns) {
-    jQuery(':root').css('--max-columns', romSettings.maxColumns);
-  }
-  if (romSettings.coverFontSize) {
-    jQuery(':root').css('--cover-font-size', romSettings.coverFontSize);
-  }
+  appSettings.coverFontSize = appSettings.coverFontSize || '1.25em';
+  appSettings.coverSize = appSettings.coverSize || '192px';
+  appSettings.maxColumns = appSettings.maxColumns || 7;
+  appSettings.showRomCount = appSettings.showRomCount != false;
+
+  // jQuery('.platform-info').append(`
+  //   <span class="platform-label">Settings</span>
+  //   <p>
+  //     <small><pre>${JSON.stringify(appSettings, null, 2)}</pre></small>
+  //   </p>
+  // `);
 };
 
 const replaceExtension = (filename, newExtension) => {
@@ -106,3 +113,8 @@ const replaceExtension = (filename, newExtension) => {
 const sanitizeRomName = (filename) => {
   return filename.replace(/\s*(\(.*?\)|\[.*?\]|{.*?})\s*/g, '');
 };
+
+const baseUrl = getBaseUrl();
+
+const platformLinks = jQuery('#platformLinks');
+const romsContainer = jQuery('#romsContainer');

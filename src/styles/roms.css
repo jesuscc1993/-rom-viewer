@@ -1,0 +1,65 @@
+.roms-container {
+  max-width: calc(
+    var(--max-columns) * var(--cover-size) + (var(--max-columns) - 1) *
+      var(--grid-gap)
+  );
+  padding: 0 0 33vh;
+  width: 100%;
+}
+
+.roms-container h3 {
+  margin: var(--spacing-l) 0 0;
+  padding: var(--spacing-l) 0 var(--spacing-m);
+}
+
+.roms-grid {
+  display: grid;
+  grid-auto-rows: minmax(min-content, max-content);
+  grid-gap: var(--grid-gap);
+  grid-template-columns: repeat(auto-fill, var(--cover-size));
+  justify-content: center;
+}
+
+.roms-grid + .roms-grid {
+  margin-top: 12px;
+}
+
+.rom {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+.rom:hover {
+  text-decoration: none;
+}
+.rom:active {
+  opacity: 0.85;
+}
+
+.rom-cover {
+  max-width: var(--cover-size);
+  transition: var(--transition);
+
+  border-radius: 4px;
+}
+
+.rom-title {
+  align-items: center;
+  background: #333;
+  color: #fff;
+  display: flex;
+  font-size: var(--cover-font-size);
+  height: 100%;
+  justify-content: center;
+  padding: var(--spacing-m);
+  text-align: center;
+  width: 100%;
+}
+
+.rom:hover .rom-cover {
+  transform: scale(1.025) translate(0, -2px);
+}
+.rom:active .rom-cover {
+  transform: none;
+}

@@ -3,22 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" href="assets/icons/dvd_32px.png" />
-    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/platform-links.css" />
+    <link rel="stylesheet" href="styles/roms.css" />
     <title>ROM Viewer</title>
   </head>
   <body>
     <div class="main">
-      <div id="platformLinks" class="platform-links sidebar">
-        <h3>Jump to:</h3>
+      <div class="sidebar">
+        <ul id="platformLinks" class="platform-links no-style"></ul>
       </div>
 
       <div class="main-contents">
         <div id="romsContainer" class="roms-container"></div>
       </div>
 
-      <div id="platformFilter" class="platform-filter sidebar">
-        <h3>Limit to:</h3>
-      </div>
+      <div id="platformInfo" class="platform-info sidebar"></div>
     </div>
 
     <script src="vendor/neutralino.js"></script>
