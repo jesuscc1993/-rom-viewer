@@ -10,7 +10,11 @@ const configPackage = (versionNumber) => {
     packageJson.version = versionNumber;
   }
 
-  fs.writeFileSync(packagePath, JSON.stringify(packageJson, null, 2), 'utf8');
+  fs.writeFileSync(
+    packagePath,
+    JSON.stringify(packageJson, null, 2) + '\n',
+    'utf8'
+  );
 };
 
 const configNeu = (isRelease, versionNumber) => {
@@ -27,7 +31,11 @@ const configNeu = (isRelease, versionNumber) => {
     configJson.version = versionNumber;
   }
 
-  fs.writeFileSync(configPath, JSON.stringify(configJson, null, 2), 'utf8');
+  fs.writeFileSync(
+    configPath,
+    JSON.stringify(configJson, null, 2) + '\n',
+    'utf8'
+  );
 };
 
 const execute = () => {

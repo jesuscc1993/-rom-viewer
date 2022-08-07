@@ -1,3 +1,5 @@
+const romSettingsPath = `${NL_CWD}/rom-viewer.settings.jsonc`;
+
 const generateRoms = async (platform) => {
   const romsGridEl = jQuery(`<div class="roms-grid"></div>`);
 
@@ -45,9 +47,9 @@ const initialize = async () => {
   Neutralino.init();
 
   try {
-    romSettings = JSON.parse(
-      await Neutralino.filesystem.readFile(`${NL_CWD}/rom-viewer.settings.json`)
-    );
+    const settings = await Neutralino.filesystem.readFile(romSettingsPath);
+
+    romSettings = JSON.parse(await settings.replace(/\/\/.*/g, ''));
 
     if (romSettings.coverSize) {
       jQuery(':root').css('--cover-size', romSettings.coverSize);
@@ -61,6 +63,17 @@ const initialize = async () => {
   } catch (err) {
     alert(err.message);
   }
+
+  const editSettingsEl = jQuery(`
+    <a href>Edit Settings</a>
+  `);
+  editSettingsEl.click(async (e) => {
+    e.preventDefault();
+
+    await Neutralino.os.execCommand(romSettingsPath);
+  });
+  jQuery('.main-contents').append(editSettingsEl);
+  editSettingsEl.wrap('<p></p>');
 
   generatePlatforms();
 };

@@ -8,7 +8,7 @@ Run `npm run update` to install/update NeutralinoJS.
 
 ### Configure
 
-Copy `/templates/rom-viewer.settings.template.json` as `rom-viewer.settings.json` and fill in your data.
+Copy `/templates/rom-viewer.settings.template.jsonc` as `rom-viewer.settings.jsonc` and fill in your data.
 
 ### Run
 
@@ -23,7 +23,7 @@ Run `npm run`.
 
 ### Configure
 
-Copy `/templates/rom-viewer.settings.template.json` as `/dist/rom-viewer/rom-viewer.settings.json` and fill in your data.
+Copy `/templates/rom-viewer.settings.template.jsonc` as `/dist/rom-viewer/rom-viewer.settings.jsonc` and fill in your data.
 
 ## Run
 
