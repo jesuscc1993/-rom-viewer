@@ -60,3 +60,8 @@ Alternatively to a string, a rom can be an object in the following format:
   "path": "" // paths to the rom, relative to the platform's romPath
 }
 ```
+
+## TODO
+
+* Group platforms by company.
+* Improve UI.
