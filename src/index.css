@@ -92,9 +92,9 @@ li a:hover {
 
 .roms-grid {
   display: grid;
+  grid-auto-rows: minmax(min-content, max-content);
   grid-gap: var(--grid-gap);
   grid-template-columns: repeat(auto-fill, var(--cover-size));
-  grid-template-rows: repeat(auto-fill, var(--cover-size));
   justify-content: center;
 }
 
@@ -103,9 +103,6 @@ li a:hover {
 }
 
 .rom {
-  height: var(--cover-size);
-  width: var(--cover-size);
-
   align-items: center;
   cursor: pointer;
   display: flex;
@@ -119,7 +116,6 @@ li a:hover {
 }
 
 .rom-cover {
-  max-height: var(--cover-size);
   max-width: var(--cover-size);
   transition: var(--transition);
 
