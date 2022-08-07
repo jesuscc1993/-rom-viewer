@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const configPath = `neutralino.config.json`;
+const configPath = `neutralino.config.jsonc`;
 const packagePath = `package.json`;
 
 const configPackage = (versionNumber) => {
