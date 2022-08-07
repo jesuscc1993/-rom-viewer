@@ -51,6 +51,8 @@ const initialize = async () => {
 
     romSettings = JSON.parse(await settings.replace(/\/\/.*/g, ''));
 
+    console.log(JSON.stringify(romSettings));
+
     if (romSettings.coverSize) {
       jQuery(':root').css('--cover-size', romSettings.coverSize);
     }

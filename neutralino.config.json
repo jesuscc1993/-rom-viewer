@@ -12,12 +12,7 @@
     "enabled": false,
     "writeToLogFile": false
   },
-  "nativeAllowList": [
-    "app.*",
-    "os.*",
-    "filesystem.*",
-    "debug.log"
-  ],
+  "nativeAllowList": ["app.*", "os.*", "filesystem.*", "debug.log"],
   "globalVariables": {},
   "modes": {
     "window": {
@@ -28,7 +23,7 @@
       "minHeight": 540,
       "fullScreen": false,
       "alwaysOnTop": false,
-      "icon": "/src/assets/icons/appIcon.png",
+      "icon": "/src/assets/icons/dvd_32px.png",
       "enableInspector": false,
       "borderless": false,
       "maximize": true,
@@ -38,24 +33,17 @@
     },
     "browser": {
       "globalVariables": {},
-      "nativeBlockList": [
-        "filesystem.*"
-      ]
+      "nativeBlockList": ["filesystem.*"]
     },
     "cloud": {
       "url": "/src/#cloud",
-      "nativeAllowList": [
-        "app.*"
-      ]
+      "nativeAllowList": ["app.*"]
     },
     "chrome": {
       "width": 1280,
       "height": 960,
       "args": "--user-agent=\"Neutralinojs chrome mode\"",
-      "nativeBlockList": [
-        "filesystem.*",
-        "os.*"
-      ]
+      "nativeBlockList": ["filesystem.*", "os.*"]
     }
   },
   "cli": {
