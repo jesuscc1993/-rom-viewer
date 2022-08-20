@@ -56,6 +56,10 @@ const initialize = async () => {
     alert(err.message);
   }
 
+  const optionsEl = jQuery(`
+    <p></p>
+  `);
+
   const editSettingsEl = jQuery(`
     <a href>Edit Settings</a>
   `);
@@ -64,8 +68,21 @@ const initialize = async () => {
 
     await Neutralino.os.execCommand(romSettingsPath);
   });
-  platformLinks.after(editSettingsEl);
-  editSettingsEl.wrap('<p></p>');
+  optionsEl.append(editSettingsEl);
+
+  optionsEl.append('&nbsp;');
+
+  const reloadEl = jQuery(`
+    <a href>↻</a>
+  `);
+  reloadEl.click((e) => {
+    e.preventDefault();
+
+    location.reload();
+  });
+  optionsEl.append(reloadEl);
+
+  platformLinks.after(optionsEl);
 
   generatePlatforms();
 };
