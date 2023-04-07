@@ -1,69 +1,57 @@
 {
   "applicationId": "js.neutralino.sample",
-  "version": "1.0.5",
+  "cli": {
+    "binaryName": "rom-viewer",
+    "binaryVersion": "4.7.0",
+    "clientLibrary": "/src/vendor/neutralino.js",
+    "clientVersion": "3.6.0",
+    "extensionsPath": "/extensions/",
+    "resourcesPath": "/src/"
+  },
   "defaultMode": "window",
-  "port": 0,
   "documentRoot": "/src/",
-  "url": "/",
-  "enableServer": true,
   "enableNativeAPI": true,
-  "tokenSecurity": "one-time",
+  "enableServer": true,
+  "globalVariables": {},
   "logging": {
     "enabled": false,
     "writeToLogFile": false
   },
-  "nativeAllowList": [
-    "app.*",
-    "os.*",
-    "filesystem.*",
-    "debug.log"
-  ],
-  "globalVariables": {},
   "modes": {
-    "window": {
-      "title": "ROM Viewer",
-      "width": 1280,
-      "height": 960,
-      "minWidth": 672,
-      "minHeight": 540,
-      "fullScreen": false,
-      "alwaysOnTop": false,
-      "icon": "/src/assets/icons/dvd_32px.png",
-      "enableInspector": false,
-      "borderless": false,
-      "maximize": true,
-      "hidden": false,
-      "resizable": true,
-      "exitProcessOnClose": true
-    },
     "browser": {
       "globalVariables": {},
-      "nativeBlockList": [
-        "filesystem.*"
-      ]
-    },
-    "cloud": {
-      "url": "/src/#cloud",
-      "nativeAllowList": [
-        "app.*"
-      ]
+      "nativeBlockList": ["filesystem.*"]
     },
     "chrome": {
-      "width": 1280,
-      "height": 960,
       "args": "--user-agent=\"Neutralinojs chrome mode\"",
-      "nativeBlockList": [
-        "filesystem.*",
-        "os.*"
-      ]
+      "height": 960,
+      "nativeBlockList": ["filesystem.*", "os.*"],
+      "width": 1280
+    },
+    "cloud": {
+      "nativeAllowList": ["app.*"],
+      "url": "/src/#cloud"
+    },
+    "window": {
+      "alwaysOnTop": false,
+      "borderless": false,
+      "enableInspector": false,
+      "exitProcessOnClose": true,
+      "fullScreen": false,
+      "height": 960,
+      "hidden": false,
+      "icon": "/src/assets/icons/dvd_32px.png",
+      "maximize": true,
+      "minHeight": 540,
+      "minWidth": 672,
+      "resizable": true,
+      "title": "ROM Viewer",
+      "width": 1280
     }
   },
-  "cli": {
-    "binaryName": "rom-viewer",
-    "resourcesPath": "/src/",
-    "extensionsPath": "/extensions/",
-    "clientLibrary": "/src/vendor/neutralino.js",
-    "binaryVersion": "4.7.0",
-    "clientVersion": "3.6.0"
-  }
+  "nativeAllowList": ["app.*", "os.*", "filesystem.*", "debug.log"],
+  "port": 0,
+  "tokenSecurity": "one-time",
+  "url": "/",
+  "version": "1.0.5"
 }
