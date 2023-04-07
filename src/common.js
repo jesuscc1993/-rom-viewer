@@ -114,6 +114,10 @@ const sanitizeRomName = (filename) => {
   return filename.replace(/\s*(\(.*?\)|\[.*?\]|{.*?}|.*\/|.*\\)\s*/g, '');
 };
 
+const buildPath = (...pathParts) => {
+  return pathParts.filter((path) => !!path).join('/');
+}
+
 const baseUrl = getBaseUrl();
 
 const platformLinks = jQuery('#platformLinks');

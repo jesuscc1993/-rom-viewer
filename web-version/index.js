@@ -4,9 +4,11 @@ const generateRoms = async (platform) => {
   platform.roms.forEach((rom) => {
     const romFilename = typeof rom === 'string' ? rom : rom.filename;
     const romName = sanitizeRomName(romFilename).replace(/\.[^.]*$/, '');
-    const coverPath = `file:///${romSettings.coverPath}/${
-      platform.coverPath || platform.romPath
-    }/${romName}.jpg`;
+    const coverPath = `${buildPath(
+      romSettings.coverPath,
+      platform.coverPath || platform.romPath,
+      romName
+    )}.jpg`;
 
     const romEl = jQuery(`
         <div class="rom" click="onClick" title="${romName}">

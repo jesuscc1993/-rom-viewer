@@ -7,9 +7,11 @@ const generateRoms = async (platform) => {
     const romFilename = typeof rom === 'string' ? rom : rom.filename;
     const romPath = typeof rom === 'string' ? rom : rom.path;
     const romName = sanitizeRomName(romFilename).replace(/\.[^.]*$/, '');
-    const coverPath = `${romSettings.coverPath}/${
-      platform.coverPath || platform.romPath
-    }/${romName}.jpg`;
+    const coverPath = `${buildPath(
+      romSettings.coverPath,
+      platform.coverPath || platform.romPath,
+      romName
+    )}.jpg`;
 
     let imageSrc;
     try {
@@ -28,8 +30,16 @@ const generateRoms = async (platform) => {
     const romEl = jQuery(`<div class="rom" title="${romName}"></div>`);
     romEl.append(coverEl);
     romEl.click(async () => {
-      const emulatorPath = `"${romSettings.emulatorPath}/${platform.emulatorPath}"`;
-      const fullRomPath = `"${romSettings.romPath}/${platform.romPath}/${romPath}"`;
+      const emulatorPath = `"${buildPath(
+        romSettings.emulatorPath,
+        platform.emulatorPath
+      )}"`;
+
+      const fullRomPath = `"${buildPath(
+        romSettings.romPath,
+        platform.romPath,
+        romPath
+      )}"`;
 
       console.info(`Running ROM ${fullRomPath} on emulator ${emulatorPath}.`);
 
