@@ -41,8 +41,9 @@ will be looked up.
 {
   "appConfig": {
     "coverFontSize": string, // font size for cover text (optional; defaults to 1.25em)
-    "coverSize": string, // cover size (optional; defaults to 192px)
+    "coverWidth": string, // cover width (optional; defaults to 192px)
     "maxColumns": string, // maximum number of rom columns to display (optional; defaults to 7)
+    "minCoverHeight": string, // minimum cover height (optional; defaults to 136px)
     "showRomCount": boolean // show rom count next to each platform (optional; defaults to true)
   },
   "coverPath": string, // base cover path, should be an absolute path

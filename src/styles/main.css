@@ -11,9 +11,10 @@
   --spacing-xl: 32px;
 
   --cover-font-size: 1.25em;
-  --cover-size: 192px;
+  --cover-width: 192px;
   --grid-gap: 12px;
   --max-columns: 7;
+  --min-cover-height: 136px;
   --transition: 150ms;
 }
 

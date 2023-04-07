@@ -84,15 +84,18 @@ const processSettings = (settings) => {
   if (appSettings.coverFontSize) {
     jQuery(':root').css('--cover-font-size', appSettings.coverFontSize);
   }
-  if (appSettings.coverSize) {
-    jQuery(':root').css('--cover-size', appSettings.coverSize);
+  if (appSettings.coverWidth) {
+    jQuery(':root').css('--cover-width', appSettings.coverWidth);
+  }
+  if (appSettings.coverWidth) {
+    jQuery(':root').css('--min-cover-height', appSettings.minCoverHeight);
   }
   if (appSettings.maxColumns) {
     jQuery(':root').css('--max-columns', appSettings.maxColumns);
   }
 
   appSettings.coverFontSize = appSettings.coverFontSize || '1.25em';
-  appSettings.coverSize = appSettings.coverSize || '192px';
+  appSettings.coverWidth = appSettings.coverWidth || '192px';
   appSettings.maxColumns = appSettings.maxColumns || 7;
   appSettings.showRomCount = appSettings.showRomCount != false;
 
@@ -116,7 +119,7 @@ const sanitizeRomName = (filename) => {
 
 const buildPath = (...pathParts) => {
   return pathParts.filter((path) => !!path).join('/');
-}
+};
 
 const baseUrl = getBaseUrl();
 
