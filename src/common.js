@@ -111,7 +111,7 @@ const replaceExtension = (filename, newExtension) => {
 };
 
 const sanitizeRomName = (filename) => {
-  return filename.replace(/\s*(\(.*?\)|\[.*?\]|{.*?})\s*/g, '');
+  return filename.replace(/\s*(\(.*?\)|\[.*?\]|{.*?}|.*\/|.*\\)\s*/g, '');
 };
 
 const baseUrl = getBaseUrl();
