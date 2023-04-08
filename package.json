@@ -1,14 +1,14 @@
 {
-  "name": "rom-viewer",
-  "version": "1.0.6",
+  "author": "jesuscc1993",
   "description": "ROM Viewer",
+  "license": "MIT",
   "main": "index.js",
+  "name": "rom-viewer",
   "scripts": {
     "build": "neu build",
     "configure": "node scripts/config.js",
     "start": "neu run",
     "update": "neu update"
   },
-  "author": "jesuscc1993",
-  "license": "MIT"
+  "version": "1.0.7"
 }
