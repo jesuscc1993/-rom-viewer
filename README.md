@@ -37,50 +37,66 @@ will be looked up.
 
 ## Config description
 
+### Application settings
+
+| property       | description                                                   | required | type    | default  |
+| -------------- | ------------------------------------------------------------- | -------- | ------- | -------- |
+| coverFontSize  | Font size for the text used when no cover image is available. | optional | string  | "1.25em" |
+| coverWidth     | Width of each game cover.                                     | optional | string  | "192px"  |
+| maxColumns     | Maximum cover per row.                                        | optional | integer | 7        |
+| minCoverHeight | Minimum cover height.                                         | optional | string  | "136px"  |
+| showRomCount   | Show number of roms for each platform.                        | optional | boolean | true     |
+
+Example:
+
 ```
-{
-  "appConfig": {
-    "coverFontSize": string, // font size for cover text (optional; defaults to 1.25em)
-    "coverWidth": string, // cover width (optional; defaults to 192px)
-    "maxColumns": string, // maximum number of rom columns to display (optional; defaults to 7)
-    "minCoverHeight": string, // minimum cover height (optional; defaults to 136px)
-    "showRomCount": boolean // show rom count next to each platform (optional; defaults to true)
-  },
-  "coverPath": string, // base cover path, should be an absolute path
-  "emulatorPath": string, // base emulator path, should be an absolute path
-  "romPath": string, // base rom path, should be an absolute path
-  "platforms": Array<PlatformElement>
+"appSettings": {
+  "coverFontSize": "1.25em",
+  "coverWidth": "192px",
+  "maxColumns": 7,
+  "minCoverHeight": "136px",
+  "showRomCount": true
 }
 ```
 
 <br>
 
-### PlatformElement
+### Platform elements
+
+| property     | description                                                                                            | required                            | type           | example                                          |
+| ------------ | ------------------------------------------------------------------------------------------------------ | ----------------------------------- | -------------- | ------------------------------------------------ |
+| name         | Name of the platform. Must match the name of the folder containing the roms.                           | required for non-separator elements | string         | "PS1"                                            |
+| coverPath    | Path to the covers for this platform; relative to the root coverPath. Defaults to the platform's name. | optional                            | string         | "PS1"                                            |
+| emulatorPath | Path to the emulator to be used to run the platform's games; relative to the root emulatorPath.        | optional                            | integer        | "DuckStation/duckstation-qt-x64-ReleaseLTCG.exe" |
+| romPath      | Path to the roms for this platform; relative to the root romPath. Defaults to the platform's name.     | optional                            | string         | "PS1"                                            |
+| roms         | List of roms.                                                                                          | optional                            | Array<RomType> | true                                             |
+| type         | Element type. To be used to add empty labels or separators.                                            | optional                            | string         | "label"                                          |
+
+Platform example:
 
 ```
 {
-  "label": string, // platform name
-  "coverPath": string, // path to the covers for this platform; relative to the root coverPath (optional; defaults to the platform's name)
-  "emulatorPath": string, // path to the emulator for this platform; relative to the root emulatorPath
-  "romPath": string, // path to the roms for this platform; relative to the root romPath (optional; defaults to the platform's name)
-  "roms": Array<RomType>
+  "name": "PS1",
+  "emulatorPath": "DuckStation/duckstation-qt-x64-ReleaseLTCG.exe",
+  "roms": [
+    "Ape Escape [SCUS-94423].bin"
+  ]
 }
 ```
 
-or
+Label example:
 
 ```
 {
-  "label": string, // display a custom label
+  "name": "Playstation",
   "type": "label"
 }
 ```
 
-or
+Separator example:
 
 ```
 {
-  "label": string, // display a separator
   "type": "separator"
 }
 ```
@@ -89,17 +105,32 @@ or
 
 ### RomType
 
+| property | description                                                                                                                           | required | type   | example |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------- | -------- | ------ | ------- |
+| name     | Name to display for the rom; does not need to match the file name. Will also be used for the cover lookup. Defaults to the roms path. | optional | string | "PS1"   |
+| path     | Path to the rom; relative to the platform's romPath.                                                                                  | required | string | "PS1"   |
+
+Example:
+
 ```
 {
-  "filename": string, // filename to be displayed; will be used for the cover lookup
-  "path": string // paths to the rom, relative to the platform's romPath
+  "name": "Castlevania - Symphony of the Night",
+  "path": "Akumajou Dracula X - Gekka no Yasoukyoku.bin"
 }
 ```
 
 or
 
 ```
-string // paths to the rom, relative to the platform's romPath; will be used for the cover lookup
+{
+  "path": "Ape Escape [SCUS-94423].bin"
+}
+```
+
+or
+
+```
+"Ape Escape [SCUS-94423].bin"
 ```
 
 <br>

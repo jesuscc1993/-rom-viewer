@@ -8,17 +8,17 @@ const arrayBufferToBase64 = (buffer) => {
 };
 
 const generatePlatformLink = (platform) => {
-  const { label, roms, type } = platform;
+  const { name, roms, type } = platform;
 
   if (type === 'separator') {
     platformLinks.append(`<hr />`);
     return;
   }
 
-  if (type === 'label') {
+  if (type === 'name') {
     platformLinks.append(`
-        <li class="platform-label secondary">
-          <strong>${label}</strong>
+        <li class="platform-name secondary">
+          <strong>${name}</strong>
         </li>
       `);
     return;
@@ -27,8 +27,8 @@ const generatePlatformLink = (platform) => {
   if (!roms?.length) return;
 
   const anchorEl = jQuery(`
-      <a href="${baseUrl}#${label}">
-        ${label}
+      <a href="${baseUrl}#${name}">
+        ${name}
       </a>
     `);
   if (appSettings.showRomCount) {
@@ -48,27 +48,27 @@ const generatePlatforms = async () => {
   romSettings.platforms.forEach(async (platform) => {
     generatePlatformLink(platform);
 
-    platform.coverPath = platform.coverPath || platform.label;
-    platform.romPath = platform.romPath || platform.label;
+    platform.coverPath = platform.coverPath || platform.name;
+    platform.romPath = platform.romPath || platform.name;
 
     if (!platform.roms?.length) return;
 
-    const platformLabelEl = jQuery(`
-      <h3 id="${platform.label}">
-        ${platform.label}
+    const platformNameEl = jQuery(`
+      <h3 id="${platform.name}">
+        ${platform.name}
       </h3>
     `);
 
     if (appSettings.showRomCount) {
-      platformLabelEl.append(`
+      platformNameEl.append(`
         <span class="tertiary">
           (${platform.roms.length})
         <span>
       `);
     }
 
-    const platformEl = jQuery(`<div class="platform ${platform.label}"></div>`);
-    platformEl.append(platformLabelEl);
+    const platformEl = jQuery(`<div class="platform ${platform.name}"></div>`);
+    platformEl.append(platformNameEl);
     platformEl.append(await generateRoms(platform));
     romsContainer.append(platformEl);
   });
@@ -101,7 +101,7 @@ const processSettings = (settings) => {
   appSettings.showRomCount = appSettings.showRomCount != false;
 
   // jQuery('.platform-info').append(`
-  //   <span class="platform-label">Settings</span>
+  //   <span class="platform-name">Settings</span>
   //   <p>
   //     <small><pre>${JSON.stringify(appSettings, null, 2)}</pre></small>
   //   </p>
