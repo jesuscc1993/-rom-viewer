@@ -1,6 +1,7 @@
 const romSettings = {
   appSettings: {
     coverFontSize: '1.25em',
+    coverPadding: '16px',
     coverWidth: '192px',
     maxColumns: 7,
     minCoverHeight: '136px',

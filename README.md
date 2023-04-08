@@ -42,6 +42,7 @@ will be looked up.
 | property       | description                                                   | required | type    | default  |
 | -------------- | ------------------------------------------------------------- | -------- | ------- | -------- |
 | coverFontSize  | Font size for the text used when no cover image is available. | optional | string  | "1.25em" |
+| coverPadding   | Padding for the text used when no cover image is available.   | optional | boolean | "16px"   |
 | coverWidth     | Width of each game cover.                                     | optional | string  | "192px"  |
 | maxColumns     | Maximum cover per row.                                        | optional | integer | 7        |
 | minCoverHeight | Minimum cover height.                                         | optional | string  | "136px"  |
@@ -52,6 +53,7 @@ Example:
 ```
 "appSettings": {
   "coverFontSize": "1.25em",
+  "coverPadding": "16px",
   "coverWidth": "192px",
   "maxColumns": 7,
   "minCoverHeight": "136px",

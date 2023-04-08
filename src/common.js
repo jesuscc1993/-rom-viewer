@@ -84,6 +84,9 @@ const processSettings = (settings) => {
   if (appSettings.coverFontSize) {
     jQuery(':root').css('--cover-font-size', appSettings.coverFontSize);
   }
+  if (appSettings.coverPadding) {
+    jQuery(':root').css('--cover-padding', appSettings.coverPadding);
+  }
   if (appSettings.coverWidth) {
     jQuery(':root').css('--cover-width', appSettings.coverWidth);
   }
@@ -95,6 +98,7 @@ const processSettings = (settings) => {
   }
 
   appSettings.coverFontSize = appSettings.coverFontSize || '1.25em';
+  appSettings.coverPadding = appSettings.coverPadding || '16px';
   appSettings.coverWidth = appSettings.coverWidth || '192px';
   appSettings.minCoverHeight = appSettings.minCoverHeight || '136px';
   appSettings.maxColumns = appSettings.maxColumns || 7;
