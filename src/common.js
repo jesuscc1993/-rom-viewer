@@ -87,7 +87,7 @@ const processSettings = (settings) => {
   if (appSettings.coverWidth) {
     jQuery(':root').css('--cover-width', appSettings.coverWidth);
   }
-  if (appSettings.coverWidth) {
+  if (appSettings.minCoverHeight) {
     jQuery(':root').css('--min-cover-height', appSettings.minCoverHeight);
   }
   if (appSettings.maxColumns) {
@@ -96,6 +96,7 @@ const processSettings = (settings) => {
 
   appSettings.coverFontSize = appSettings.coverFontSize || '1.25em';
   appSettings.coverWidth = appSettings.coverWidth || '192px';
+  appSettings.minCoverHeight = appSettings.minCoverHeight || '136px';
   appSettings.maxColumns = appSettings.maxColumns || 7;
   appSettings.showRomCount = appSettings.showRomCount != false;
 

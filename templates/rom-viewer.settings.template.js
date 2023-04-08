@@ -1,4 +1,11 @@
 const romSettings = {
+  appSettings: {
+    coverFontSize: '1.25em',
+    coverWidth: '192px',
+    maxColumns: 7,
+    minCoverHeight: '136px',
+    showRomCount: true,
+  },
   romPath: '',
   coverPath: '',
   emulatorPath: '',
