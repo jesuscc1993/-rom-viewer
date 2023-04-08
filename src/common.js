@@ -15,28 +15,28 @@ const generatePlatformLink = (platform) => {
     return;
   }
 
-  if (type === 'name') {
+  if (type === 'label') {
     platformLinks.append(`
-        <li class="platform-name secondary">
-          <strong>${name}</strong>
-        </li>
-      `);
+      <li class="platform-name secondary">
+        <strong>${name}</strong>
+      </li>
+    `);
     return;
   }
 
   if (!roms?.length) return;
 
   const anchorEl = jQuery(`
-      <a href="${baseUrl}#${name}">
-        ${name}
-      </a>
-    `);
+    <a href="${baseUrl}#${name}">
+      ${name}
+    </a>
+  `);
   if (appSettings.showRomCount) {
     anchorEl.append(`
-        <span class="tertiary">
-          (${roms.length})
-        <span>
-      `);
+      <span class="tertiary">
+        (${roms.length})
+      <span>
+    `);
   }
 
   const liEl = jQuery(`<li class="anchor"></li>`);
