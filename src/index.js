@@ -57,6 +57,8 @@ let romSettings;
 const initialize = async () => {
   Neutralino.init();
 
+  window.addEventListener('contextmenu', (event) => event.preventDefault());
+
   try {
     const settings = await Neutralino.filesystem.readFile(romSettingsPath);
 
