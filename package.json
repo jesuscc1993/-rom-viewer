@@ -4,6 +4,9 @@
   "license": "MIT",
   "main": "index.js",
   "name": "rom-viewer",
+  "dependencies": {
+    "@neutralinojs/neu": "^9.6.1"
+  },
   "scripts": {
     "build": "neu build",
     "configure": "node scripts/config.js",

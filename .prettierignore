@@ -2,3 +2,5 @@
 /dist
 neutralino.js
 *.min.js
+*.json
+*.jsonc

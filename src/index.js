@@ -32,7 +32,7 @@ const generateRoms = async (platform) => {
     romEl.click(async () => {
       const emulatorPath = `"${buildPath(
         romSettings.emulatorPath,
-        platform.emulatorPath
+        rom.emulatorPath || platform.emulatorPath
       )}"`;
 
       const fullRomPath = `"${buildPath(
