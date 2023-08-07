@@ -6,7 +6,7 @@
   padding: 0 0 33vh;
   width: 100%;
 }
-.roms-container:has(.rom:hover) .rom:not(:hover) {
+.roms-container:has(.rom:hover) .rom:not(:hover) .rom-cover {
   filter: grayscale(0.75);
 }
 
@@ -32,7 +32,6 @@
   cursor: pointer;
   display: flex;
   justify-content: center;
-  transition: var(--transition);
 }
 .rom:hover {
   text-decoration: none;
