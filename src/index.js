@@ -18,7 +18,7 @@ const generateRoms = async (platform) => {
       const imageBytes = await Neutralino.filesystem.readBinaryFile(coverPath);
       imageSrc = arrayBufferToBase64(imageBytes);
     } catch (err) {
-      console.error(err);
+      logger.error(err);
     }
 
     const coverEl = jQuery(
@@ -41,7 +41,7 @@ const generateRoms = async (platform) => {
         romPath
       )}"`;
 
-      console.info(`Running ROM ${fullRomPath} on emulator ${emulatorPath}.`);
+      logger.info(`Running ROM ${fullRomPath} on emulator ${emulatorPath}.`);
 
       await Neutralino.os.execCommand(`${emulatorPath} ${fullRomPath}`);
     });
@@ -97,6 +97,13 @@ const initialize = async () => {
   platformLinks.after(optionsEl);
 
   generatePlatforms();
+};
+
+const logger = {
+  error: async (text) => await Neutralino.debug.log(text, 'ERROR'),
+  info: async (text) => await Neutralino.debug.log(text, 'INFO'),
+  log: async (text) => await Neutralino.debug.log(text),
+  warn: async (text) => await Neutralino.debug.log(text, 'WARNING'),
 };
 
 initialize();
