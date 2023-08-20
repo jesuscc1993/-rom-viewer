@@ -1,5 +1,5 @@
 {
-  "applicationId": "js.neutralino.sample",
+  "applicationId": "mt.rom.viewer",
   "cli": {
     "binaryName": "rom-viewer",
     "binaryVersion": "4.7.0",
@@ -24,9 +24,9 @@
     },
     "chrome": {
       "args": "--user-agent=\"Neutralinojs chrome mode\"",
-      "height": 960,
+      "height": 900,
       "nativeBlockList": ["filesystem.*", "os.*"],
-      "width": 1280
+      "width": 1600
     },
     "cloud": {
       "nativeAllowList": ["app.*"],
@@ -38,7 +38,7 @@
       "enableInspector": false,
       "exitProcessOnClose": true,
       "fullScreen": false,
-      "height": 960,
+      "height": 900,
       "hidden": false,
       "icon": "/src/assets/icons/dvd_32px.png",
       "maximize": true,
@@ -46,7 +46,7 @@
       "minWidth": 672,
       "resizable": true,
       "title": "ROM Viewer",
-      "width": 1280
+      "width": 1600
     }
   },
   "nativeAllowList": ["app.*", "os.*", "filesystem.*", "debug.log"],
