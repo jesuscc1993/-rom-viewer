@@ -65,7 +65,10 @@ const initialize = async () => {
     romSettings = JSON.parse(settings.replace(/\/\/.*/g, ''));
     processSettings(romSettings);
   } catch (err) {
-    alert(err.message);
+    logger.error(err.message);
+
+    jQuery('#romsContainer').html(`<p>ERROR: ${err.message}</p>`);
+    return;
   }
 
   const optionsEl = jQuery(`
