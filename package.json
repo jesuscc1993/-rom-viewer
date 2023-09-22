@@ -1,17 +1,32 @@
 {
   "author": "jesuscc1993",
+  "dependencies": {
+    "express": "4.18.2",
+    "fs-extra": "11.1.1"
+  },
   "description": "ROM Viewer",
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/fs-extra": "^11.0.2",
+    "@types/node": "^20.6.3",
+    "@typescript-eslint/eslint-plugin": "^6.7.2",
+    "@typescript-eslint/parser": "^6.7.2",
+    "eslint": "^8.49.0",
+    "eslint-config-prettier": "^9.0.0",
+    "ts-loader": "^9.4.4",
+    "typescript": "^5.2.2",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  },
   "license": "MIT",
   "main": "index.js",
   "name": "rom-viewer",
-  "dependencies": {
-    "@neutralinojs/neu": "^9.6.1"
-  },
   "scripts": {
-    "build": "neu build",
-    "configure": "node scripts/config.js",
-    "start": "neu run",
-    "update": "neu update"
+    "build": "tsc",
+    "bundle": "webpack-cli",
+    "debug": "yarn build && yarn start",
+    "eslint": "eslint src/",
+    "start": "node build/backend/app.js"
   },
   "version": "1.0.7"
 }

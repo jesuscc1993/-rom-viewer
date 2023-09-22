@@ -18,8 +18,7 @@ Run `npm run`.
 
 ### Build
 
-1. Run `npm run configure` to configure the mode (dev / release) and version.
-2. Run `npm run build` to compile the executable desktop app (can be found under `/dist`).
+Run `npm run build` to compile the executable desktop app (can be found under `/dist`).
 
 ### Configure
 
