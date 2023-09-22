@@ -5,12 +5,24 @@ import { fileSystemService } from '../services/file-system.service';
 import { FileRequest } from '../types/path.types';
 
 export const pathController = (app: Express) => {
+  app.post('/execute', (req: FileRequest, res) => {
+    const command = req.body?.path;
+    if (!command) throw invalidRequestBodyError;
+
+    res.send(fileSystemService.execute(command));
+  });
+
   app.post('/open-file', (req: FileRequest, res) => {
     const path = req.body?.path;
     if (!path) throw invalidRequestBodyError;
 
-    fileSystemService.openFile(path);
+    res.send(fileSystemService.openFile(path));
+  });
 
-    res.send(undefined);
+  app.post('/read-file', (req: FileRequest, res) => {
+    const path = req.body?.path;
+    if (!path) throw invalidRequestBodyError;
+
+    res.sendFile(path);
   });
 };

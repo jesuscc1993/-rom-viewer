@@ -1,4 +1,7 @@
-const romSettingsPath = `${NL_CWD}/rom-viewer.settings.jsonc`;
+import { fileSystemService } from './services/file-system.service';
+import { tap } from 'rxjs/operators';
+
+const romSettingsPath = `../../rom-viewer.settings.jsonc`;
 
 const generateRoms = async (platform) => {
   const romsGridEl = jQuery(`<div class="roms-grid"></div>`);
@@ -13,40 +16,42 @@ const generateRoms = async (platform) => {
       romName
     )}.jpg`;
 
-    let imageSrc;
-    try {
-      const imageBytes = await Neutralino.filesystem.readBinaryFile(coverPath);
-      imageSrc = arrayBufferToBase64(imageBytes);
-    } catch (err) {
-      logger.error(err);
-    }
+    getFile(coverPath)
+      .pipe(
+        tap((imageBytes) => {
+          imageSrc = arrayBufferToBase64(imageBytes);
 
-    const coverEl = jQuery(
-      imageSrc
-        ? `<img class="rom-cover" alt="${romName}" src="${imageSrc}"></img>`
-        : `<div class="rom-cover rom-title" alt="${romName}">${romName}</div>`
-    );
+          const coverEl = jQuery(
+            imageSrc
+              ? `<img class="rom-cover" alt="${romName}" src="${imageSrc}"></img>`
+              : `<div class="rom-cover rom-title" alt="${romName}">${romName}</div>`
+          );
 
-    const romEl = jQuery(`<div class="rom" title="${romName}"></div>`);
-    romEl.append(coverEl);
-    romEl.click(async () => {
-      const emulatorPath = `"${buildPath(
-        romSettings.emulatorPath,
-        rom.emulatorPath || platform.emulatorPath
-      )}"`;
+          const romEl = jQuery(`<div class="rom" title="${romName}"></div>`);
+          romEl.append(coverEl);
+          romEl.click(async () => {
+            const emulatorPath = `"${buildPath(
+              romSettings.emulatorPath,
+              rom.emulatorPath || platform.emulatorPath
+            )}"`;
 
-      const fullRomPath = `"${buildPath(
-        romSettings.romPath,
-        platform.romPath,
-        romPath
-      )}"`;
+            const fullRomPath = `"${buildPath(
+              romSettings.romPath,
+              platform.romPath,
+              romPath
+            )}"`;
 
-      logger.info(`Running ROM ${fullRomPath} on emulator ${emulatorPath}.`);
+            logger.info(
+              `Running ROM ${fullRomPath} on emulator ${emulatorPath}.`
+            );
 
-      await Neutralino.os.execCommand(`${emulatorPath} ${fullRomPath}`);
-    });
+            execute(`${emulatorPath} ${fullRomPath}`).subscribe();
+          });
 
-    romsGridEl.append(romEl);
+          romsGridEl.append(romEl);
+        })
+      )
+      .subscribe();
   });
 
   return romsGridEl;
@@ -55,15 +60,17 @@ const generateRoms = async (platform) => {
 let romSettings;
 
 const initialize = async () => {
-  Neutralino.init();
-
   window.addEventListener('contextmenu', (event) => event.preventDefault());
 
   try {
-    const settings = await Neutralino.filesystem.readFile(romSettingsPath);
-
-    romSettings = JSON.parse(settings.replace(/\/\/.*/g, ''));
-    processSettings(romSettings);
+    getFile(romSettingsPath)
+      .pipe(
+        tap((settings) => {
+          romSettings = JSON.parse(settings.replace(/\/\/.*/g, ''));
+          processSettings(romSettings);
+        })
+      )
+      .subscribe();
   } catch (err) {
     logger.error(err.message);
 
@@ -81,7 +88,7 @@ const initialize = async () => {
   editSettingsEl.click(async (e) => {
     e.preventDefault();
 
-    await Neutralino.os.execCommand(romSettingsPath);
+    openFile(romSettingsPath).subscribe();
   });
   optionsEl.append(editSettingsEl);
 
@@ -103,10 +110,15 @@ const initialize = async () => {
 };
 
 const logger = {
-  error: async (text) => await Neutralino.debug.log(text, 'ERROR'),
-  info: async (text) => await Neutralino.debug.log(text, 'INFO'),
-  log: async (text) => await Neutralino.debug.log(text),
-  warn: async (text) => await Neutralino.debug.log(text, 'WARNING'),
+  error: (text) => console.error(text),
+  info: (text) => console.info(text),
+  debug: (text) => console.debug(text),
+  log: (text) => console.log(text),
+  warn: (text) => console.warning(text),
 };
+
+const execute = (command) => fileSystemService.execute(command);
+const getFile = (path) => fileSystemService.getFile(path);
+const openFile = (path) => fileSystemService.openFile(path);
 
 initialize();
