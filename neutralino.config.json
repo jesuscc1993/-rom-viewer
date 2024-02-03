@@ -2,7 +2,7 @@
   "applicationId": "mt.rom.viewer",
   "cli": {
     "binaryName": "rom-viewer",
-    "binaryVersion": "4.7.0",
+    "binaryVersion": "4.15.0",
     "clientLibrary": "/src/vendor/neutralino.js",
     "clientVersion": "3.6.0",
     "extensionsPath": "/extensions/",
