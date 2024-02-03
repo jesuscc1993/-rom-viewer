@@ -70,10 +70,11 @@ Example:
 | property     | description                                                                                            | required                            | type           | example                                          |
 | ------------ | ------------------------------------------------------------------------------------------------------ | ----------------------------------- | -------------- | ------------------------------------------------ |
 | name         | Name of the platform. Must match the name of the folder containing the roms.                           | required for non-separator elements | string         | "PS1"                                            |
+| label        | Label of the platform. Will only display in the central pane. Defaults to the platform's name.         | optional                            | string         | "PS1 (PlayStation 1)"                            |
 | coverPath    | Path to the covers for this platform; relative to the root coverPath. Defaults to the platform's name. | optional                            | string         | "PS1"                                            |
-| emulatorPath | Path to the emulator to be used to run the platform's games; relative to the root emulatorPath.        | optional                            | integer        | "DuckStation/duckstation-qt-x64-ReleaseLTCG.exe" |
+| emulatorPath | Path to the emulator to be used to run the platform's games; relative to the root emulatorPath.        | required                            | string         | "DuckStation/duckstation-qt-x64-ReleaseLTCG.exe" |
 | romPath      | Path to the roms for this platform; relative to the root romPath. Defaults to the platform's name.     | optional                            | string         | "PS1"                                            |
-| roms         | List of roms.                                                                                          | optional                            | Array<RomType> | true                                             |
+| roms         | List of roms.                                                                                          | optional                            | Array<RomType> | (see below)                                      |
 | type         | Element type. To be used to add empty labels or separators.                                            | optional                            | string         | "label"                                          |
 
 Platform example:

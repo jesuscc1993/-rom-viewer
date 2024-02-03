@@ -55,7 +55,7 @@ const generatePlatforms = async () => {
 
     const platformNameEl = jQuery(`
       <h3 id="${platform.name}">
-        ${platform.name}
+        ${platform.label || platform.name}
       </h3>
     `);
 
