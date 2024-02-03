@@ -105,7 +105,7 @@ const generatePlatformDetails = async (platform) => {
         Cover path
       </span><br />
       <span>
-        ${platform.coverPath || platform.romPath}
+        /${platform.coverPath || platform.romPath}
       </span>
     </p>
   `);
