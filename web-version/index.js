@@ -26,11 +26,19 @@ const generateRomList = async (platform) => {
   rightSidebarEl.empty();
 
   const ulEl = jQuery(`<ul class="link-list no-style"></ul>`);
-  ulEl.append(`
+  const platformEl = jQuery(`
     <li class="platform-name secondary static">
       <strong>${platform.name}</strong>
     </li>
   `);
+  if (appSettings.showRomCount) {
+    platformEl.append(`
+      <span class="tertiary">
+        (${platform.roms.length})
+      <span>
+    `);
+  }
+  ulEl.append(platformEl);
 
   platform.roms.forEach(async (rom) => {
     const romFilename = typeof rom === 'string' ? rom : rom.name || rom.path;
