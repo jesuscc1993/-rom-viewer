@@ -15,6 +15,7 @@
   --grid-gap: 12px;
   --max-columns: 7;
   --min-cover-height: 136px;
+  --sidebar-width: 192px;
   --transition: 150ms;
 }
 
@@ -61,7 +62,7 @@ a:hover {
 
 .sidebar {
   overflow-y: auto;
-  width: 192px;
+  width: var(--sidebar-width);
   margin: var(--spacing-m) 0;
 }
 

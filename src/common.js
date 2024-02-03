@@ -90,19 +90,23 @@ const processSettings = (settings) => {
   if (appSettings.coverWidth) {
     jQuery(':root').css('--cover-width', appSettings.coverWidth);
   }
+  if (appSettings.maxColumns) {
+    jQuery(':root').css('--max-columns', appSettings.maxColumns);
+  }
   if (appSettings.minCoverHeight) {
     jQuery(':root').css('--min-cover-height', appSettings.minCoverHeight);
   }
-  if (appSettings.maxColumns) {
-    jQuery(':root').css('--max-columns', appSettings.maxColumns);
+  if (appSettings.sidebarWidth) {
+    jQuery(':root').css('--sidebar-width', appSettings.sidebarWidth);
   }
 
   appSettings.coverFontSize = appSettings.coverFontSize || '1.25em';
   appSettings.coverPadding = appSettings.coverPadding || '16px';
   appSettings.coverWidth = appSettings.coverWidth || '192px';
-  appSettings.minCoverHeight = appSettings.minCoverHeight || '136px';
   appSettings.maxColumns = appSettings.maxColumns || 7;
+  appSettings.minCoverHeight = appSettings.minCoverHeight || '136px';
   appSettings.showRomCount = appSettings.showRomCount != false;
+  appSettings.sidebarWidth = appSettings.sidebarWidth || '192px';
 
   // jQuery('.platform-info').append(`
   //   <span class="platform-name">Settings</span>

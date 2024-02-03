@@ -47,6 +47,7 @@ will be looked up.
 | maxColumns     | Maximum cover per row.                                        | optional | integer | 7        |
 | minCoverHeight | Minimum cover height.                                         | optional | string  | "136px"  |
 | showRomCount   | Show number of roms for each platform.                        | optional | boolean | true     |
+| sidebarWidth   | Width of the sidebar.                                         | optional | string  | "192px"  |
 
 Example:
 
@@ -58,6 +59,7 @@ Example:
   "maxColumns": 7,
   "minCoverHeight": "136px",
   "showRomCount": true
+  "sidebarWidth": "192px",
 }
 ```
 
