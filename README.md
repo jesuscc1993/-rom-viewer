@@ -139,7 +139,3 @@ or
 ```
 
 <br>
-
-## TODO
-
-- Find something to fill the right sidebar with

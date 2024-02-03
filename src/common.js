@@ -39,9 +39,7 @@ const generatePlatformLink = (ulEl, platform) => {
     `);
   }
   anchorEl.click((e) => {
-    // e.preventDefault();
-    // e.stopPropagation();
-    generateRomList(platform);
+    generatePlatformDetails(platform);
   });
 
   const liEl = jQuery(`<li class="anchor"></li>`);
@@ -84,8 +82,43 @@ const generatePlatforms = async () => {
   leftSidebarEl.append(ulEl);
 };
 
+const generatePlatformDetails = async (platform) => {
+  rightSidebarEl.empty();
+
+  const romList = await generateRomList(platform);
+  rightSidebarEl.append(romList);
+
+  rightSidebarEl.append(`
+    <p>
+      <span class="secondary">
+        Default emulator
+      </span><br />
+      <span>
+        ${getLastPathSection(platform.emulatorPath, true)}
+      </span>
+    </p>
+  `);
+
+  rightSidebarEl.append(`
+    <p>
+      <span class="secondary">
+        Cover path
+      </span><br />
+      <span>
+        ${platform.coverPath || platform.romPath}
+      </span>
+    </p>
+  `);
+};
+
 const getBaseUrl = () => {
   return location.protocol + '//' + location.host + location.pathname;
+};
+
+const getLastPathSection = (path, removeExtension) => {
+  let lastSection = path.split(/[\\|/]/).pop();
+  if (removeExtension) lastSection = lastSection.replace(/\.[^/.]+$/, '');
+  return lastSection;
 };
 
 const processSettings = (settings) => {

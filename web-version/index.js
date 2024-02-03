@@ -23,9 +23,8 @@ const generateRoms = async (platform) => {
 };
 
 const generateRomList = async (platform) => {
-  rightSidebarEl.empty();
-
   const ulEl = jQuery(`<ul class="link-list no-style"></ul>`);
+
   const platformEl = jQuery(`
     <li class="platform-name secondary static">
       <strong>${platform.name}</strong>
@@ -53,7 +52,7 @@ const generateRomList = async (platform) => {
     ulEl.append(romEl);
   });
 
-  rightSidebarEl.append(ulEl);
+  return ulEl;
 };
 
 const initialize = async () => {
