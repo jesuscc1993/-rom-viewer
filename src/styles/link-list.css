@@ -2,17 +2,16 @@
   margin: var(--spacing-xs) 0;
 }
 
-.link-list li.anchor:hover {
-  background-color: var(--c-selected);
-}
-
 .link-list li:not(.static) > * {
-  color: white;
+  border-radius: 4px;
+  color: var(--c-foreground);
   display: inline-block;
   padding: var(--spacing-xs);
   transition: var(--transition);
   width: 100%;
 }
 .link-list li:not(.static) > *:hover {
+  background-color: var(--c-selected);
+  color: var(--c-anchor-hover);
   transform: translate(4px, 0);
 }

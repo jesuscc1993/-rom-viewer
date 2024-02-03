@@ -50,8 +50,8 @@
 
 .rom-title {
   align-items: center;
-  background: #333;
-  color: #fff;
+  background: var(--c-selected);
+  color: var(--c-foreground);
   display: flex;
   font-size: var(--cover-font-size);
   height: 100%;
