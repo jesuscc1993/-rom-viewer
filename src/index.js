@@ -1,5 +1,7 @@
 const romSettingsPath = `${NL_CWD}/rom-viewer.settings.jsonc`;
 
+let romSettings;
+
 const generateRoms = async (platform) => {
   const romsGridEl = jQuery(`<div class="roms-grid"></div>`);
 
@@ -52,7 +54,48 @@ const generateRoms = async (platform) => {
   return romsGridEl;
 };
 
-let romSettings;
+const generateRomList = async (platform) => {
+  rightSidebarEl.empty();
+
+  const ulEl = jQuery(`<ul class="link-list no-style"></ul>`);
+  ulEl.append(`
+    <li class="platform-name secondary static">
+      <strong>${platform.name}</strong>
+    </li>
+  `);
+
+  platform.roms.forEach(async (rom) => {
+    const romFilename = typeof rom === 'string' ? rom : rom.name || rom.path;
+    const romPath = typeof rom === 'string' ? rom : rom.path;
+    const romName = sanitizeRomName(romFilename).replace(/\.[^.]*$/, '');
+
+    const romEl = jQuery(`
+      <li class="rom" title="${romName}">
+        <span>${romName}</span>
+      </li>
+    `);
+    romEl.click(async () => {
+      const emulatorPath = `"${buildPath(
+        romSettings.emulatorPath,
+        rom.emulatorPath || platform.emulatorPath
+      )}"`;
+
+      const fullRomPath = `"${buildPath(
+        romSettings.romPath,
+        platform.romPath,
+        romPath
+      )}"`;
+
+      logger.info(`Running ROM ${fullRomPath} on emulator ${emulatorPath}.`);
+
+      await Neutralino.os.execCommand(`${emulatorPath} ${fullRomPath}`);
+    });
+
+    ulEl.append(romEl);
+  });
+
+  rightSidebarEl.append(ulEl);
+};
 
 const initialize = async () => {
   Neutralino.init();
@@ -97,9 +140,9 @@ const initialize = async () => {
   });
   optionsEl.append(reloadEl);
 
-  platformLinks.after(optionsEl);
-
   generatePlatforms();
+
+  leftSidebarEl.append(optionsEl);
 };
 
 const logger = {

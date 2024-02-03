@@ -14,8 +14,8 @@
   "enableServer": true,
   "globalVariables": {},
   "logging": {
-    "enabled": false,
-    "writeToLogFile": false
+    "enabled": true,
+    "writeToLogFile": true
   },
   "modes": {
     "browser": {
@@ -35,7 +35,7 @@
     "window": {
       "alwaysOnTop": false,
       "borderless": false,
-      "enableInspector": false,
+      "enableInspector": true,
       "exitProcessOnClose": true,
       "fullScreen": false,
       "height": 900,

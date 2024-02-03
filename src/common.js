@@ -7,17 +7,17 @@ const arrayBufferToBase64 = (buffer) => {
   return `data:image/jpg;base64,${window.btoa(binary)}`;
 };
 
-const generatePlatformLink = (platform) => {
+const generatePlatformLink = (ulEl, platform) => {
   const { name, roms, type } = platform;
 
   if (type === 'separator') {
-    platformLinks.append(`<hr />`);
+    ulEl.append(`<hr />`);
     return;
   }
 
   if (type === 'label') {
-    platformLinks.append(`
-      <li class="platform-name secondary">
+    ulEl.append(`
+      <li class="platform-name secondary static">
         <strong>${name}</strong>
       </li>
     `);
@@ -38,15 +38,23 @@ const generatePlatformLink = (platform) => {
       <span>
     `);
   }
+  anchorEl.click((e) => {
+    // e.preventDefault();
+    // e.stopPropagation();
+    generateRomList(platform);
+  });
 
   const liEl = jQuery(`<li class="anchor"></li>`);
   liEl.append(anchorEl);
-  platformLinks.append(liEl);
+  ulEl.append(liEl);
+  leftSidebarEl.append(ulEl);
 };
 
 const generatePlatforms = async () => {
+  const ulEl = jQuery(`<ul class="link-list no-style"></ul>`);
+
   romSettings.platforms.forEach(async (platform) => {
-    generatePlatformLink(platform);
+    generatePlatformLink(ulEl, platform);
 
     platform.coverPath = platform.coverPath || platform.name;
     platform.romPath = platform.romPath || platform.name;
@@ -70,8 +78,10 @@ const generatePlatforms = async () => {
     const platformEl = jQuery(`<div class="platform ${platform.name}"></div>`);
     platformEl.append(platformNameEl);
     platformEl.append(await generateRoms(platform));
-    romsContainer.append(platformEl);
+    romsContainerEl.append(platformEl);
   });
+
+  leftSidebarEl.append(ulEl);
 };
 
 const getBaseUrl = () => {
@@ -132,5 +142,6 @@ const buildPath = (...pathParts) => {
 
 const baseUrl = getBaseUrl();
 
-const platformLinks = jQuery('#platformLinks');
-const romsContainer = jQuery('#romsContainer');
+const leftSidebarEl = jQuery('#leftSidebar');
+const romsContainerEl = jQuery('#romsContainer');
+const rightSidebarEl = jQuery('#rightSidebar');

@@ -22,6 +22,32 @@ const generateRoms = async (platform) => {
   return romsGridEl;
 };
 
+const generateRomList = async (platform) => {
+  rightSidebarEl.empty();
+
+  const ulEl = jQuery(`<ul class="link-list no-style"></ul>`);
+  ulEl.append(`
+    <li class="platform-name secondary static">
+      <strong>${platform.name}</strong>
+    </li>
+  `);
+
+  platform.roms.forEach(async (rom) => {
+    const romFilename = typeof rom === 'string' ? rom : rom.name || rom.path;
+    const romName = sanitizeRomName(romFilename).replace(/\.[^.]*$/, '');
+
+    const romEl = jQuery(`
+      <li class="rom" title="${romName}">
+        <span>${romName}</span>
+      </li>
+    `);
+
+    ulEl.append(romEl);
+  });
+
+  rightSidebarEl.append(ulEl);
+};
+
 const initialize = async () => {
   processSettings(romSettings);
 
