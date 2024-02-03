@@ -14,8 +14,8 @@
   "enableServer": true,
   "globalVariables": {},
   "logging": {
-    "enabled": true,
-    "writeToLogFile": true
+    "enabled": false,
+    "writeToLogFile": false
   },
   "modes": {
     "browser": {
@@ -35,7 +35,7 @@
     "window": {
       "alwaysOnTop": false,
       "borderless": false,
-      "enableInspector": true,
+      "enableInspector": false,
       "exitProcessOnClose": true,
       "fullScreen": false,
       "height": 900,
@@ -53,5 +53,5 @@
   "port": 0,
   "tokenSecurity": "one-time",
   "url": "/",
-  "version": "1.0.7"
+  "version": "1.0.8"
 }
