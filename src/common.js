@@ -102,7 +102,7 @@ const generatePlatformDetails = async (platform) => {
   rightSidebarEl.append(`
     <p>
       <span class="secondary">
-        Cover path
+        Default cover path
       </span><br />
       <span>
         /${platform.coverPath || platform.romPath}

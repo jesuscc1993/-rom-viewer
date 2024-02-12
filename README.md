@@ -110,10 +110,11 @@ Separator example:
 
 ### RomType
 
-| property | description                                                                                                                           | required | type   | example |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------------- | -------- | ------ | ------- |
-| name     | Name to display for the rom; does not need to match the file name. Will also be used for the cover lookup. Defaults to the roms path. | optional | string | "PS1"   |
-| path     | Path to the rom; relative to the platform's romPath.                                                                                  | required | string | "PS1"   |
+| property  | description                                                                                                                           | required | type   | example |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------- | -------- | ------ | ------- |
+| name      | Name to display for the rom; does not need to match the file name. Will also be used for the cover lookup. Defaults to the roms path. | optional | string | "PS1"   |
+| path      | Path to the rom; relative to the platform's romPath.                                                                                  | required | string | "PS1"   |
+| coverPath | Path to the covers for this platform; relative to the root coverPath. Defaults to the platform's coverPath.                           | optional | string | "PS1"   |
 
 Example:
 

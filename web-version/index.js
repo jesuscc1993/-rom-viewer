@@ -6,7 +6,7 @@ const generateRoms = async (platform) => {
     const romName = sanitizeRomName(romFilename).replace(/\.[^.]*$/, '');
     const coverPath = `${buildPath(
       romSettings.coverPath,
-      platform.coverPath || platform.romPath,
+      rom.coverPath || platform.coverPath || platform.romPath,
       romName
     )}.jpg`;
 
