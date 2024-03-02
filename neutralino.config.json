@@ -53,5 +53,5 @@
   "port": 0,
   "tokenSecurity": "one-time",
   "url": "/",
-  "version": "1.0.8"
+  "version": "1.0.9"
 }
