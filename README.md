@@ -39,16 +39,17 @@ will be looked up.
 
 ### Application settings
 
-| property       | description                                                   | required | type    | default  |
-| -------------- | ------------------------------------------------------------- | -------- | ------- | -------- |
-| coverFontSize  | Font size for the text used when no cover image is available. | optional | string  | "1.25em" |
-| coverPadding   | Padding for the text used when no cover image is available.   | optional | boolean | "16px"   |
-| coverWidth     | Width of each game cover.                                     | optional | string  | "192px"  |
-| maxColumns     | Maximum cover per row.                                        | optional | integer | 7        |
-| minCoverHeight | Minimum cover height.                                         | optional | string  | "136px"  |
-| showRomCount   | Show number of roms for each platform.                        | optional | boolean | true     |
-| showShadows    | Show shadows on some elements, such as rom covers.            | optional | boolean | true     |
-| sidebarWidth   | Width of the sidebar.                                         | optional | string  | "192px"  |
+| property       | description                                                   | required | type    | default   |
+| -------------- | ------------------------------------------------------------- | -------- | ------- | --------- |
+| coverFontSize  | Font size for the text used when no cover image is available. | optional | string  | "1.25em"  |
+| coverPadding   | Padding for the text used when no cover image is available.   | optional | boolean | "16px"    |
+| coverWidth     | Width of each game cover.                                     | optional | string  | "192px"   |
+| maxColumns     | Maximum cover per row.                                        | optional | integer | 7         |
+| minCoverHeight | Minimum cover height.                                         | optional | string  | "136px"   |
+| showRomCount   | Show number of roms for each platform.                        | optional | boolean | true      |
+| showShadows    | Show shadows on some elements, such as rom covers.            | optional | boolean | true      |
+| sidebarWidth   | Width of the sidebar.                                         | optional | string  | "192px"   |
+| theme          | Theme ("windows" or "steam").                                 | optional | string  | "windows" |
 
 Example:
 
@@ -62,6 +63,7 @@ Example:
   "showRomCount": true,
   "showShadows": true,
   "sidebarWidth": "192px",
+  "theme": "windows",
 }
 ```
 

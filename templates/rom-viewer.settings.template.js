@@ -8,6 +8,7 @@ const romSettings = {
     showRomCount: true,
     showShadows: true,
     sidebarWidth: '192px',
+    theme: 'windows',
   },
   romPath: '',
   coverPath: '',

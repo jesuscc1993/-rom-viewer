@@ -7,7 +7,8 @@
     "minCoverHeight": "136px",
     "showRomCount": true,
     "showShadows": true,
-    "sidebarWidth": "192px"
+    "sidebarWidth": "192px",
+    "theme": "windows"
   },
   "romPath": "",
   "coverPath": "",

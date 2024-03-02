@@ -233,10 +233,12 @@ const processSettings = (settings) => {
 
   appSettings.showRomCount = appSettings.showRomCount != false;
   appSettings.showShadows = appSettings.showShadows != false;
+  appSettings.theme = appSettings.theme || 'windows';
 
   if (appSettings.showShadows) {
     jQuery('body').addClass('with-shadows');
   }
+  jQuery('body').addClass(appSettings.theme);
 
   jQuery(':root').css({
     '--cover-font-size': appSettings.coverFontSize,
