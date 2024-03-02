@@ -28,7 +28,11 @@ const generateRoms = async (platform) => {
 
     const romEl = jQuery(`<div class="rom" title="${romName}"></div>`);
     romEl.append(coverEl);
-    romEl.click(() => onRomClick(romSettings, platform, rom));
+    romEl.click((e) => {
+      e.preventDefault();
+
+      onRomClick(romSettings, platform, rom);
+    });
 
     romsGridEl.append(romEl);
   });
@@ -64,7 +68,11 @@ const generateRomList = async (platform) => {
         </a>
       </li>
     `);
-    romEl.click(() => onRomClick(romSettings, platform, rom));
+    romEl.click((e) => {
+      e.preventDefault();
+
+      onRomClick(romSettings, platform, rom);
+    });
 
     ulEl.append(romEl);
   });
@@ -169,7 +177,9 @@ const generatePlatformDetails = async (platform) => {
       </li>
     </ul>
   `);
-  rightSidebarEl.find('.emulator-link').click(() => {
+  rightSidebarEl.find('.emulator-link').click((e) => {
+    e.preventDefault();
+
     onEmulatorClick(romSettings, platform);
   });
 
