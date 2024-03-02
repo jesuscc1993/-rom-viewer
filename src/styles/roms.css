@@ -27,20 +27,34 @@
   margin-top: 12px;
 }
 
-.rom {
+.roms-grid .rom {
   align-items: center;
   cursor: pointer;
   display: flex;
   justify-content: center;
+  transition: box-shadow 150ms;
 }
-.rom:hover {
+.roms-grid .rom:hover {
   text-decoration: none;
 }
-.rom:active {
+.roms-grid .rom:hover .rom-cover {
+  transform: scale(1.025) translate(0, -2px);
+}
+.roms-grid .rom:active {
   opacity: 0.85;
 }
+.roms-grid .rom:active .rom-cover {
+  transform: none;
+}
+.with-shadows .roms-grid .rom {
+  box-shadow: 0px 4px 8px 0px rgb(0 0 0 / 50%);
+  transition: box-shadow 150ms;
+}
+.with-shadows .roms-grid .rom:hover {
+  box-shadow: 0px 8px 12px 0px rgb(0 0 0 / 33%);
+}
 
-.rom-cover {
+.roms-grid .rom-cover {
   width: var(--cover-width);
   min-height: var(--min-cover-height);
   transition: var(--transition);
@@ -48,7 +62,7 @@
   border-radius: 4px;
 }
 
-.rom-title {
+.roms-grid .rom-title {
   align-items: center;
   background: var(--c-selected);
   color: var(--c-foreground);
@@ -59,11 +73,4 @@
   padding: var(--cover-padding);
   text-align: center;
   width: 100%;
-}
-
-.rom:hover .rom-cover {
-  transform: scale(1.025) translate(0, -2px);
-}
-.rom:active .rom-cover {
-  transform: none;
 }

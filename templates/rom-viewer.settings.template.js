@@ -6,6 +6,8 @@ const romSettings = {
     maxColumns: 7,
     minCoverHeight: '136px',
     showRomCount: true,
+    showShadows: true,
+    sidebarWidth: '192px',
   },
   romPath: '',
   coverPath: '',

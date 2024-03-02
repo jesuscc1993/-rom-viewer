@@ -7,6 +7,71 @@ const arrayBufferToBase64 = (buffer) => {
   return `data:image/jpg;base64,${window.btoa(binary)}`;
 };
 
+const generateRoms = async (platform) => {
+  const romsGridEl = jQuery(`<div class="roms-grid"></div>`);
+
+  platform.roms.forEach(async (rom) => {
+    const romFilename = typeof rom === 'string' ? rom : rom.name || rom.path;
+    const romName = sanitizeRomName(romFilename).replace(/\.[^.]*$/, '');
+    const coverPath = `${buildPath(
+      romSettings.coverPath,
+      rom.coverPath || platform.coverPath || platform.romPath,
+      romName
+    )}.jpg`;
+
+    const imageSrc = await getRomCover(coverPath);
+    const coverEl = jQuery(
+      imageSrc
+        ? `<img class="rom-cover" alt="${romName}" src="${imageSrc}"></img>`
+        : `<div class="rom-cover rom-title" alt="${romName}">${romName}</div>`
+    );
+
+    const romEl = jQuery(`<div class="rom" title="${romName}"></div>`);
+    romEl.append(coverEl);
+    romEl.click(() => onRomClick(romSettings, platform, rom));
+
+    romsGridEl.append(romEl);
+  });
+
+  return romsGridEl;
+};
+
+const generateRomList = async (platform) => {
+  const ulEl = jQuery(`<ul class="no-style link-list roms-list"></ul>`);
+
+  const platformEl = jQuery(`
+    <li class="header">
+      <div>
+        <strong>${platform.name}</strong>
+        ${
+          appSettings.showRomCount
+            ? `<span class="tertiary">(${platform.roms.length})<span>`
+            : undefined
+        }
+      </div>
+    </li>
+  `);
+  ulEl.append(platformEl);
+
+  platform.roms.forEach(async (rom) => {
+    const romFilename = typeof rom === 'string' ? rom : rom.name || rom.path;
+    const romName = sanitizeRomName(romFilename).replace(/\.[^.]*$/, '');
+
+    const romEl = jQuery(`
+      <li class="rom" title="${romName}">
+        <a href>
+          ${romName}
+        </a>
+      </li>
+    `);
+    romEl.click(() => onRomClick(romSettings, platform, rom));
+
+    ulEl.append(romEl);
+  });
+
+  return ulEl;
+};
+
 const generatePlatformLink = (ulEl, platform) => {
   const { name, roms, type } = platform;
 
@@ -17,8 +82,10 @@ const generatePlatformLink = (ulEl, platform) => {
 
   if (type === 'label') {
     ulEl.append(`
-      <li class="platform-name secondary static">
-        <strong>${name}</strong>
+      <li class="header">
+        <div>
+          <strong>${name}</strong>
+        </div>
       </li>
     `);
     return;
@@ -49,7 +116,7 @@ const generatePlatformLink = (ulEl, platform) => {
 };
 
 const generatePlatforms = async () => {
-  const ulEl = jQuery(`<ul class="link-list no-style"></ul>`);
+  const ulEl = jQuery(`<ul class="no-style link-list platforms-list"></ul>`);
 
   romSettings.platforms.forEach(async (platform) => {
     generatePlatformLink(ulEl, platform);
@@ -89,25 +156,33 @@ const generatePlatformDetails = async (platform) => {
   rightSidebarEl.append(romList);
 
   rightSidebarEl.append(`
-    <p>
-      <span class="secondary">
-        Default emulator
-      </span><br />
-      <span>
-        ${getLastPathSection(platform.emulatorPath, true)}
-      </span>
-    </p>
+    <ul class="no-style link-list">
+      <li class="header">
+        <div>
+          Default emulator
+        </div>
+      </li>
+      <li class="no-hover">
+        <div>
+          ${getLastPathSection(platform.emulatorPath, true)}
+        </div>
+      </li>
+    </ul>
   `);
 
   rightSidebarEl.append(`
-    <p>
-      <span class="secondary">
-        Default cover path
-      </span><br />
-      <span>
-        /${platform.coverPath || platform.romPath}
-      </span>
-    </p>
+    <ul class="no-style link-list">
+      <li class="header">
+        <div>
+          Default cover path
+        </div>
+      </li>
+      <li class="no-hover">
+        <div>
+          /${platform.coverPath || platform.romPath}
+        </div>
+      </li>
+    </ul>
   `);
 };
 
@@ -121,42 +196,46 @@ const getLastPathSection = (path, removeExtension) => {
   return lastSection;
 };
 
+const getEmulatorPath = (romSettings, platform, rom) => {
+  return buildPath(
+    romSettings.emulatorPath,
+    rom.emulatorPath || platform.emulatorPath
+  );
+};
+
+const getRomPath = (romSettings, platform, rom) => {
+  return buildPath(
+    romSettings.romPath,
+    platform.romPath,
+    typeof rom === 'string' ? rom : rom.path
+  );
+};
+
 const processSettings = (settings) => {
   window.appSettings = settings.appSettings || {};
-
-  if (appSettings.coverFontSize) {
-    jQuery(':root').css('--cover-font-size', appSettings.coverFontSize);
-  }
-  if (appSettings.coverPadding) {
-    jQuery(':root').css('--cover-padding', appSettings.coverPadding);
-  }
-  if (appSettings.coverWidth) {
-    jQuery(':root').css('--cover-width', appSettings.coverWidth);
-  }
-  if (appSettings.maxColumns) {
-    jQuery(':root').css('--max-columns', appSettings.maxColumns);
-  }
-  if (appSettings.minCoverHeight) {
-    jQuery(':root').css('--min-cover-height', appSettings.minCoverHeight);
-  }
-  if (appSettings.sidebarWidth) {
-    jQuery(':root').css('--sidebar-width', appSettings.sidebarWidth);
-  }
 
   appSettings.coverFontSize = appSettings.coverFontSize || '1.25em';
   appSettings.coverPadding = appSettings.coverPadding || '16px';
   appSettings.coverWidth = appSettings.coverWidth || '192px';
   appSettings.maxColumns = appSettings.maxColumns || 7;
   appSettings.minCoverHeight = appSettings.minCoverHeight || '136px';
-  appSettings.showRomCount = appSettings.showRomCount != false;
   appSettings.sidebarWidth = appSettings.sidebarWidth || '192px';
 
-  // jQuery('.platform-info').append(`
-  //   <span class="platform-name">Settings</span>
-  //   <p>
-  //     <small><pre>${JSON.stringify(appSettings, null, 2)}</pre></small>
-  //   </p>
-  // `);
+  appSettings.showRomCount = appSettings.showRomCount != false;
+  appSettings.showShadows = appSettings.showShadows != false;
+
+  if (appSettings.showShadows) {
+    jQuery('body').addClass('with-shadows');
+  }
+
+  jQuery(':root').css({
+    '--cover-font-size': appSettings.coverFontSize,
+    '--cover-padding': appSettings.coverPadding,
+    '--cover-width': appSettings.coverWidth,
+    '--max-columns': appSettings.maxColumns,
+    '--min-cover-height': appSettings.minCoverHeight,
+    '--sidebar-width': appSettings.sidebarWidth,
+  });
 };
 
 const replaceExtension = (filename, newExtension) => {

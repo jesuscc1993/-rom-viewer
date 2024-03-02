@@ -1,0 +1,17 @@
+:root {
+  --c-background: #191919;
+  --c-border: #2b2b2b;
+  --c-foreground: #fff;
+  --c-selected: #333;
+
+  --c-anchor-hover: #ffd98c;
+  --c-anchor: #d9a36c;
+  --c-list-anchor-hover: #ffd98c;
+  --c-list-anchor: #fff;
+  --c-header-bg: transparent;
+  --c-header-fg: #a8a8a8;
+  --c-scrollbar: #333;
+  --c-scrollbar-hover: #444;
+
+  --scrollbar-width: 16px;
+}

@@ -1,17 +1,33 @@
-.link-list hr {
-  margin: var(--spacing-xs) 0;
+.link-list + .link-list {
+  margin-top: var(--spacing-l);
 }
 
-.link-list li:not(.static) > * {
-  border-radius: 4px;
-  color: var(--c-foreground);
-  display: inline-block;
-  padding: var(--spacing-xs);
-  transition: var(--transition);
-  width: 100%;
+.link-list hr {
+  margin: var(--spacing-xs) var(--spacing-m);
 }
-.link-list li:not(.static) > *:hover {
+
+.link-list li > * {
+  border-radius: 4px;
+  padding: var(--spacing-xs) var(--spacing-m);
+}
+
+.link-list li:not(.header) > * {
+  color: var(--c-list-anchor);
+  display: inline-block;
+  padding: var(--spacing-xs) var(--spacing-l);
+  transition: var(--transition);
+  width: calc(100% - var(--spacing-xs) * 2);
+}
+.link-list li:not(.header):not(.no-hover) > *:hover {
   background-color: var(--c-selected);
-  color: var(--c-anchor-hover);
-  transform: translate(4px, 0);
+  color: var(--c-list-anchor-hover);
+  transform: translate(var(--spacing-xs), 0);
+}
+
+.link-list .header {
+  margin: var(--spacing-xs);
+}
+.link-list .header > * {
+  background-color: var(--c-header-bg);
+  color: var(--c-header-fg);
 }
