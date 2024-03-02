@@ -67,6 +67,12 @@ a:hover {
   overflow-y: auto;
   width: var(--sidebar-width);
 }
+.sidebar.left-sidebar {
+  border-left-width: 0;
+}
+.sidebar.right-sidebar {
+  border-right-width: 0;
+}
 
 .sidebar h4:first-child {
   margin: var(--spacing-s) 0 var(--spacing-m);
