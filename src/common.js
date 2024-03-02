@@ -162,13 +162,16 @@ const generatePlatformDetails = async (platform) => {
           Default emulator
         </div>
       </li>
-      <li class="no-hover">
-        <div>
+      <li class="emulator-link">
+        <a href>
           ${getLastPathSection(platform.emulatorPath, true)}
-        </div>
+        </a>
       </li>
     </ul>
   `);
+  rightSidebarEl.find('.emulator-link').click(() => {
+    onEmulatorClick(romSettings, platform);
+  });
 
   rightSidebarEl.append(`
     <ul class="no-style link-list">
@@ -196,11 +199,8 @@ const getLastPathSection = (path, removeExtension) => {
   return lastSection;
 };
 
-const getEmulatorPath = (romSettings, platform, rom) => {
-  return buildPath(
-    romSettings.emulatorPath,
-    rom.emulatorPath || platform.emulatorPath
-  );
+const getEmulatorPath = (romSettings, platform) => {
+  return buildPath(romSettings.emulatorPath, platform.emulatorPath);
 };
 
 const getRomPath = (romSettings, platform, rom) => {

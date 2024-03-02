@@ -21,6 +21,13 @@ const onRomClick = async (romSettings, platform, rom) => {
   await Neutralino.os.execCommand(`${emulatorPath} ${fullRomPath}`);
 };
 
+const onEmulatorClick = async (romSettings, platform) => {
+  const emulatorPath = `"${getEmulatorPath(romSettings, platform)}"`;
+
+  logger.info(`Running emulator ${emulatorPath}.`);
+  await Neutralino.os.execCommand(emulatorPath);
+};
+
 const initialize = async () => {
   Neutralino.init();
 
