@@ -49,6 +49,7 @@ a:hover {
 }
 
 .main-contents {
+  background-color: var(--c-main-bg);
   padding: 0 var(--spacing-m);
 }
 

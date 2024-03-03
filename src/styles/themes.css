@@ -10,9 +10,10 @@
   --c-list-anchor-fg: #fff;
   --c-list-header-bg: transparent;
   --c-list-header-fg: #a8a8a8;
-  --c-scrollbar-hover: #444;
-  --c-scrollbar: #333;
-  --c-sidebar-bg: #191919;
+  --c-scrollbar-hover: #7a7a7a;
+  --c-scrollbar: #4d4d4d;
+  --c-main-bg: transparent;
+  --c-sidebar-bg: transparent;
 
   --scrollbar-width: 16px;
 }
@@ -31,15 +32,14 @@
   --c-list-header-fg: #cae5fa;
   --c-scrollbar-hover: #7b8391;
   --c-scrollbar: #606773;
-  --c-sidebar-bg: #24282e;
 
   --scrollbar-width: 12px;
 }
 
 .discord {
-  --c-bg: #313338;
+  --c-bg: #2b2d31;
   --c-fg: #e1e7ef;
-  --c-border: #313338;
+  --c-border: #2b2d31;
 
   --c-anchor-hover-fg: #e1e7ef;
   --c-anchor-fg: #fff;
@@ -48,7 +48,7 @@
   --c-list-anchor-fg: #949ba4;
   --c-list-header-bg: transparent;
   --c-list-header-fg: #a5adb8;
-  --c-scrollbar-hover: #7b8391;
-  --c-scrollbar: #606773;
-  --c-sidebar-bg: #2b2d31;
+  --c-scrollbar-hover: #212326;
+  --c-scrollbar: #1a1b1e;
+  --c-main-bg: #313338;
 }
