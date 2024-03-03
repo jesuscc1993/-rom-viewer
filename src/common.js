@@ -62,7 +62,7 @@ const generateRomList = async (platform) => {
     const romName = sanitizeRomName(romFilename).replace(/\.[^.]*$/, '');
 
     const romEl = jQuery(`
-      <li class="rom" title="${romName}">
+      <li class="rom" title="${romFilename}">
         <a href>
           ${romName}
         </a>
@@ -167,12 +167,14 @@ const generatePlatformDetails = async (platform) => {
     <ul class="no-style link-list">
       <li class="header">
         <div>
-          Default emulator
+          <strong>Default emulator</strong>
         </div>
       </li>
-      <li class="emulator-link">
+      <li class="emulator-link" title="/${platform.emulatorPath}">
         <a href>
-          ${getLastPathSection(platform.emulatorPath, true)}
+          ${sanitizeEmulatorName(
+            getLastPathSection(platform.emulatorPath, true)
+          )}
         </a>
       </li>
     </ul>
@@ -187,7 +189,7 @@ const generatePlatformDetails = async (platform) => {
     <ul class="no-style link-list">
       <li class="header">
         <div>
-          Default cover path
+          <strong>Default cover path</strong>
         </div>
       </li>
       <li class="no-hover">
@@ -254,6 +256,10 @@ const replaceExtension = (filename, newExtension) => {
   return filename.includes('.')
     ? filename.replace(/\.[^.]+$/, `.${newExtension}`)
     : `${filename}.${newExtension}`;
+};
+
+const sanitizeEmulatorName = (filename) => {
+  return filename.replace(/[\s-_]+.*/g, '');
 };
 
 const sanitizeRomName = (filename) => {
