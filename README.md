@@ -49,7 +49,7 @@ will be looked up.
 | showRomCount   | Show number of roms for each platform.                        | optional | boolean | true      |
 | showShadows    | Show shadows on some elements, such as rom covers.            | optional | boolean | true      |
 | sidebarWidth   | Width of the sidebar.                                         | optional | string  | "192px"   |
-| theme          | Theme ("windows" or "steam").                                 | optional | string  | "windows" |
+| theme          | Theme ("windows", "steam" or "discord").                      | optional | string  | "windows" |
 
 Example:
 

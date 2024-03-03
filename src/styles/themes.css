@@ -1,35 +1,54 @@
 :root {
-  --c-background: #191919;
+  --c-bg: #191919;
+  --c-fg: #fff;
   --c-border: #2b2b2b;
-  --c-foreground: #fff;
-  --c-selected: #333;
 
-  --c-anchor-hover: #ffd98c;
-  --c-anchor: #d9a36c;
-  --c-list-anchor-hover: #ffd98c;
-  --c-list-anchor: #fff;
-  --c-header-bg: transparent;
-  --c-header-fg: #a8a8a8;
-  --c-scrollbar: #333;
+  --c-anchor-hover-fg: #ffd98c;
+  --c-anchor-fg: #d9a36c;
+  --c-list-anchor-hover-bg: #333;
+  --c-list-anchor-hover-fg: #ffd98c;
+  --c-list-anchor-fg: #fff;
+  --c-list-header-bg: transparent;
+  --c-list-header-fg: #a8a8a8;
   --c-scrollbar-hover: #444;
+  --c-scrollbar: #333;
+  --c-sidebar-bg: #191919;
 
   --scrollbar-width: 16px;
 }
 
 .steam {
-  --c-background: #24282e;
+  --c-bg: #24282e;
+  --c-fg: #e1e7ef;
   --c-border: #30343b;
-  --c-foreground: #e1e7ef;
-  --c-selected: #323a4a;
 
-  --c-anchor-hover: #e1e7ef;
-  --c-anchor: #fff;
-  --c-list-anchor-hover: #fff;
-  --c-list-anchor: #e1e7ef;
-  --c-header-bg: #292f3a;
-  --c-header-fg: #cae5fa;
-  --c-scrollbar: #606773;
+  --c-anchor-hover-fg: #e1e7ef;
+  --c-anchor-fg: #fff;
+  --c-list-anchor-hover-bg: #323a4a;
+  --c-list-anchor-hover-fg: #fff;
+  --c-list-anchor-fg: #e1e7ef;
+  --c-list-header-bg: #292f3a;
+  --c-list-header-fg: #cae5fa;
   --c-scrollbar-hover: #7b8391;
+  --c-scrollbar: #606773;
+  --c-sidebar-bg: #24282e;
 
   --scrollbar-width: 12px;
+}
+
+.discord {
+  --c-bg: #313338;
+  --c-fg: #e1e7ef;
+  --c-border: #313338;
+
+  --c-anchor-hover-fg: #e1e7ef;
+  --c-anchor-fg: #fff;
+  --c-list-anchor-hover-bg: #35373c;
+  --c-list-anchor-hover-fg: #fafafa;
+  --c-list-anchor-fg: #949ba4;
+  --c-list-header-bg: transparent;
+  --c-list-header-fg: #a5adb8;
+  --c-scrollbar-hover: #7b8391;
+  --c-scrollbar: #606773;
+  --c-sidebar-bg: #2b2d31;
 }

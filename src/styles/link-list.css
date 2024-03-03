@@ -12,15 +12,15 @@
 }
 
 .link-list li:not(.header) > * {
-  color: var(--c-list-anchor);
+  color: var(--c-list-anchor-fg);
   display: inline-block;
   padding: var(--spacing-xs) var(--spacing-l);
   transition: var(--transition);
   width: calc(100% - var(--spacing-xs) * 2);
 }
 .link-list li:not(.header):not(.no-hover) > *:hover {
-  background-color: var(--c-selected);
-  color: var(--c-list-anchor-hover);
+  background-color: var(--c-list-anchor-hover-bg);
+  color: var(--c-list-anchor-hover-fg);
   transform: translate(var(--spacing-xs), 0);
 }
 
@@ -28,6 +28,6 @@
   margin: var(--spacing-xs);
 }
 .link-list .header > * {
-  background-color: var(--c-header-bg);
-  color: var(--c-header-fg);
+  background-color: var(--c-list-header-bg);
+  color: var(--c-list-header-fg);
 }

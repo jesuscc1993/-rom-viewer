@@ -240,7 +240,7 @@ const processSettings = (settings) => {
   if (appSettings.showShadows) {
     jQuery('body').addClass('with-shadows');
   }
-  jQuery('body').addClass(appSettings.theme);
+  jQuery('body').addClass(appSettings.theme.toLowerCase());
 
   jQuery(':root').css({
     '--cover-font-size': appSettings.coverFontSize,

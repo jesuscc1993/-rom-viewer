@@ -64,8 +64,8 @@
 
 .roms-grid .rom-title {
   align-items: center;
-  background: var(--c-selected);
-  color: var(--c-foreground);
+  background: var(--c-list-anchor-hover-bg);
+  color: var(--c-fg);
   display: flex;
   font-size: var(--cover-font-size);
   height: 100%;
