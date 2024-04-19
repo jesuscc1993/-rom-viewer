@@ -32,6 +32,8 @@
   --c-list-header-fg: #cae5fa;
   --c-scrollbar-hover: #7b8391;
   --c-scrollbar: #606773;
+  --c-main-bg: transparent;
+  --c-sidebar-bg: transparent;
 
   --scrollbar-width: 12px;
 }
@@ -51,4 +53,5 @@
   --c-scrollbar-hover: #212326;
   --c-scrollbar: #1a1b1e;
   --c-main-bg: #313338;
+  --c-sidebar-bg: transparent;
 }

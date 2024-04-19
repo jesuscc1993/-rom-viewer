@@ -6,9 +6,6 @@
   padding: 0 0 33vh;
   width: 100%;
 }
-.roms-container:has(.rom:hover) .rom:not(:hover) .rom-cover {
-  filter: grayscale(0.67);
-}
 
 .roms-container h3 {
   margin: var(--spacing-l) 0 0;
@@ -39,6 +36,7 @@
 }
 .roms-grid .rom:hover .rom-cover {
   transform: scale(1.025) translate(0, -2px);
+  filter: brightness(1.1) saturate(1.1);
 }
 .roms-grid .rom:active {
   opacity: 0.85;
