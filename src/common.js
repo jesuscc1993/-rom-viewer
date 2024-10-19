@@ -215,6 +215,10 @@ const getEmulatorPath = (romSettings, platform) => {
   return buildPath(romSettings.emulatorPath, platform.emulatorPath);
 };
 
+const getEmulatorKey = (platform, rom) => {
+  return rom.emulatorKey || platform.emulatorKey;
+};
+
 const getRomPath = (romSettings, platform, rom) => {
   return buildPath(
     romSettings.romPath,
