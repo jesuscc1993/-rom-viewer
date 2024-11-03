@@ -5,11 +5,12 @@ const getRomCover = (coverPath) => {
 const onRomClick = (romSettings, platform, rom) => {
   const fullRomPath = getRomPath(romSettings, platform, rom);
   const emulatorKey = getEmulatorKey(platform, rom);
-  const link = `emu://${emulatorKey};${fullRomPath}`;
+  const link = `emu://${btoa(
+    `${romSettings.emulatorPath};${emulatorKey};${fullRomPath}`
+  )}`;
   window.open(link);
 
   console.info(`Clicked on ROM "${fullRomPath}".`);
-  console.info(`Trying to open "${link}"...`);
 };
 
 const onEmulatorClick = async (romSettings, platform) => {
