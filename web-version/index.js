@@ -22,7 +22,9 @@ const onEmulatorClick = async (romSettings, platform) => {
 const initialize = async () => {
   processSettings(romSettings);
 
-  generatePlatforms();
+  await generatePlatforms();
+
+  setTimeout(bindKeyboardKeys);
 };
 
 initialize();

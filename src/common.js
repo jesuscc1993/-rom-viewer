@@ -274,8 +274,92 @@ const buildPath = (...pathParts) => {
   return pathParts.filter((path) => !!path).join('/');
 };
 
+const bindKeyboardKeys = () => {
+  platforms = romSettings.platforms
+    .filter(
+      ({ name, type, roms }) => !!(name && type !== 'label' && roms.length)
+    )
+    .map((platform) => platform.name);
+
+  const hash = window.location.hash.substring(1);
+  selectedPlatformIndex = platforms.includes(hash)
+    ? platforms.indexOf(hash)
+    : 0;
+  setHashAndScroll(platforms[selectedPlatformIndex]);
+
+  document.addEventListener('keydown', (event) => {
+    switch (event.key.toUpperCase()) {
+      case 'ARROWUP':
+      case 'W':
+        onDirectionPress(event, Key.Up);
+        break;
+      case 'ARROWLEFT':
+      case 'A':
+        onDirectionPress(event, Key.Left);
+        break;
+      case 'ARROWDOWN':
+      case 'S':
+        onDirectionPress(event, Key.Down);
+        break;
+      case 'ARROWRIGHT':
+      case 'D':
+        onDirectionPress(event, Key.Right);
+        break;
+      default:
+        console.log(`${event.key} pressed`);
+    }
+  });
+};
+
+const onDirectionPress = (event, direction) => {
+  event.preventDefault();
+  console.log(`${direction} pressed`);
+
+  if ([Key.Up, Key.Down].includes(direction)) {
+    if (direction === Key.Up) {
+      selectedPlatformIndex--;
+
+      if (selectedPlatformIndex < 0) {
+        selectedPlatformIndex = platforms.length - 1;
+      }
+    }
+    if (direction === Key.Down) {
+      selectedPlatformIndex++;
+
+      if (selectedPlatformIndex > platforms.length - 1) {
+        selectedPlatformIndex = 0;
+      }
+    }
+  }
+
+  setHashAndScroll(platforms[selectedPlatformIndex]);
+};
+
+const setHashAndScroll = (hash) => {
+  history.pushState(
+    null,
+    null,
+    hash ? `#${hash}` : window.location.pathname + window.location.search
+  );
+
+  const targetElement = document.getElementById(hash);
+  if (targetElement) {
+    targetElement.scrollIntoView({ behavior: 'smooth' });
+  }
+};
+
 const baseUrl = getBaseUrl();
 
 const leftSidebarEl = jQuery('#leftSidebar');
 const romsContainerEl = jQuery('#romsContainer');
 const rightSidebarEl = jQuery('#rightSidebar');
+
+const Key = {
+  Up: 'UP',
+  Left: 'LEFT',
+  Down: 'DOWN',
+  Right: 'RIGHT',
+};
+
+let platforms;
+let selectedPlatformIndex;
