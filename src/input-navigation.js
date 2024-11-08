@@ -65,9 +65,10 @@ const onDirectionPress = (event, direction) => {
 };
 
 /* platform selection */
-const selectPrevPlatform = () => {
+const selectPrevPlatform = (romIndex) => {
   setSelectedPlatformByIndex(
-    (selectedPlatformIndex - 1 + platformNames.length) % platformNames.length
+    (selectedPlatformIndex - 1 + platformNames.length) % platformNames.length,
+    romIndex
   );
 };
 
@@ -77,23 +78,37 @@ const selectNextPlatform = () => {
   );
 };
 
-const setSelectedPlatformByIndex = (platformIndex = selectedPlatformIndex) => {
+const setSelectedPlatformByIndex = (
+  platformIndex = selectedPlatformIndex,
+  romIndex = 0
+) => {
   selectedPlatformIndex = platformIndex;
   selectedPlatform = platforms[platformIndex];
-  setSelectedRomByIndex(0);
+  setSelectedRomByIndex(
+    romIndex >= 0 ? romIndex : selectedPlatform.roms.length - 1
+  );
   setHash(sanitizePlatformName(selectedPlatform.name));
 };
 
 /* rom selection */
 const selectPrevRom = () => {
-  setSelectedRomByIndex(
-    (selectedRomIndex - 1 + selectedPlatform.roms.length) %
-      selectedPlatform.roms.length
-  );
+  let newIndex = selectedRomIndex - 1;
+
+  if (newIndex < 0) {
+    selectPrevPlatform(-1);
+  } else {
+    setSelectedRomByIndex(newIndex);
+  }
 };
 
 const selectNextRom = () => {
-  setSelectedRomByIndex((selectedRomIndex + 1) % selectedPlatform.roms.length);
+  const newIndex = selectedRomIndex + 1;
+
+  if (newIndex >= selectedPlatform.roms.length) {
+    selectNextPlatform();
+  } else {
+    setSelectedRomByIndex(newIndex);
+  }
 };
 
 const setSelectedRomByIndex = (romIndex = selectedRomIndex) => {
