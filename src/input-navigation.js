@@ -4,6 +4,7 @@ let selectedPlatform;
 let selectedPlatformIndex;
 let selectedRomIndex = 0;
 let selectedRom;
+let selectedRomEl;
 
 const Key = {
   Up: 'UP',
@@ -39,6 +40,9 @@ const bindKeyboardKeys = () => {
       case 'ARROWRIGHT':
       case 'D':
         onDirectionPress(event, Key.Right);
+        break;
+      case 'ENTER':
+        if (selectedRomEl) selectedRomEl.click();
         break;
       default:
         console.debug(`${event.key} pressed`);
@@ -77,7 +81,7 @@ const setSelectedPlatformByIndex = (platformIndex = selectedPlatformIndex) => {
   selectedPlatformIndex = platformIndex;
   selectedPlatform = platforms[platformIndex];
   setSelectedRomByIndex(0);
-  setHashAndScroll(selectedPlatform.name);
+  setHash(sanitizePlatformName(selectedPlatform.name));
 };
 
 /* rom selection */
@@ -95,9 +99,13 @@ const selectNextRom = () => {
 const setSelectedRomByIndex = (romIndex = selectedRomIndex) => {
   selectedRomIndex = romIndex;
   selectedRom = selectedPlatform.roms[romIndex];
-  console.debug(
-    `∞ selectedRomIndex, selectedRom:`,
-    selectedRomIndex,
-    selectedRom
-  );
+
+  jQuery('.rom.selected').removeClass('selected');
+  selectedRomEl = jQuery(`#${sanitizePlatformName(selectedPlatform.name)}`)
+    .parents('.platform')
+    .find('.rom')
+    .eq(selectedRomIndex);
+  selectedRomEl.addClass('selected');
+
+  scrollIntoView(selectedRomEl.get(0), { block: 'center' });
 };

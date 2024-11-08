@@ -40,10 +40,6 @@ const generateRoms = async (platform) => {
 
       onRomClick(romSettings, platform, rom);
     });
-    // romEl.hover(
-    //   () => romEl.addClass('active'),
-    //   () => romEl.removeClass('active')
-    // );
 
     romsGridEl.append(romEl);
   });
@@ -113,7 +109,7 @@ const generatePlatformLink = (ulEl, platform) => {
   if (!roms?.length) return;
 
   const anchorEl = jQuery(`
-    <a href="${baseUrl}#${name}">
+    <a href="${baseUrl}#${sanitizePlatformName(name)}">
       ${name}
     </a>
   `);
@@ -146,7 +142,7 @@ const generatePlatforms = async () => {
     if (!platform.roms?.length) return;
 
     const platformNameEl = jQuery(`
-      <h3 id="${platform.name}">
+      <h3 id="${sanitizePlatformName(platform.name)}">
         ${platform.label || platform.name}
       </h3>
     `);
@@ -273,28 +269,33 @@ const replaceExtension = (filename, newExtension) => {
     : `${filename}.${newExtension}`;
 };
 
-const sanitizeEmulatorName = (filename) => {
-  return filename.replace(/[\s-_]+.*/g, '');
+const sanitizePlatformName = (name) => {
+  return name.replace(/\s+/g, '');
 };
 
-const sanitizeRomName = (filename) => {
-  return filename.replace(/\s*(\(.*?\)|\[.*?\]|{.*?}|.*\/|.*\\)\s*/g, '');
+const sanitizeEmulatorName = (name) => {
+  return name.replace(/[\s-_]+.*/g, '');
+};
+
+const sanitizeRomName = (name) => {
+  return name.replace(/\s*(\(.*?\)|\[.*?\]|{.*?}|.*\/|.*\\)\s*/g, '');
 };
 
 const buildPath = (...pathParts) => {
   return pathParts.filter((path) => !!path).join('/');
 };
 
-const setHashAndScroll = (hash) => {
+const setHash = (hash) => {
   history.pushState(
     null,
     null,
     hash ? `#${hash}` : window.location.pathname + window.location.search
   );
+};
 
-  const targetElement = document.getElementById(hash);
+const scrollIntoView = (targetElement, options = {}) => {
   if (targetElement) {
-    targetElement.scrollIntoView({ behavior: 'smooth' });
+    targetElement.scrollIntoView({ behavior: 'smooth', ...options });
   }
 };
 
